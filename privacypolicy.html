@@ -1,941 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css">
-    <title>Paragraph Academy | Write your success with paragraph</title>
-</head>
-
-<body>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
-*{
-    padding: 0;
-    margin: 0;
-    outline: none;
-    border: none;
-    box-sizing: border-box;
-}
-
-img{
-    width: 100%;
-    display: flex;
-}
-
-a{
-    text-decoration: none;
-}
-
-body{
-    font-family: 'Poppins', sans-serif;
-    background-color: #ffffff;
-}
-
-nav{
-    max-width: 1200px;
-    margin: auto;
-    padding: 2rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-}
-
-.nav-logo{
-    max-width: 100px;
-}
-
-.nav-links{
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-}
-
-.link a{
-    position: relative;
-    padding-bottom: 0.75rem;
-    color: #ce0000;
-}
-
-.link a::after{
-    content: "";
-    position: absolute;
-    height: 2px;
-    width: 0;
-    bottom: 0;
-    left: 0;
-    background-color: #eeeef0;
-    transition: all 0.3s ease;
-}
-
-.link a:hover::after{
-    width: 70%;
-}
-
-.btn{
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    color: #ffffff;
-    background-color: #1d4ed8;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn:hover{
-    background-color: #1e40af;
-}
-
-.container{
-    max-width: 1200px;
-    margin: auto;
-    padding: 5rem 2rem;
-}
-
-.blur{
-    position: absolute;
-    box-shadow: 0 0 1000px 50px #1d4ed8;
-    z-index: -100;
-}
-
-header{
-    position: relative;
-    padding-top: 2rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    gap: 2rem;
-}
-
-header .content h4{
-    margin-bottom: 1rem;
-    color: #ccc;
-    font-size: 1rem;
-    font-weight: 600;
-}
-
-header .content h1{
-    color: #fff;
-    margin-bottom: 1rem;
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 4rem;
-}
-
-header .content h1 span{
-    -webkit-text-stroke: 1px #000000;
-}
-
-header .content p{
-    margin-bottom: 2rem;
-    color: #ccc;
-}
-
-header .image{
-    position: relative;
-}
-
-header .image::before{
-    content: "o";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 38rem;
-    font-weight: 400;
-    line-height: 20rem;
-    color: #3d66d6;
-    opacity: 0.2;
-    z-index: -100;
-}
-
-header .image img{
-    max-width: 600px;
-    margin: auto;
-}
-
-section .header{
-    margin-bottom: 1rem;
-    color: #fff;
-    text-align: center;
-    font-size: 2.25rem;
-    font-weight: 600;
-}
-
-.features{
-    margin-top: 4rem;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-}
-
-.features .card{
-    background-color: #27272a;
-    padding: 1rem;
-    border: 2px solid transparent;
-    border-radius: 15px;
-    transition: all 0.3s ease;
-}
-
-.features .card:hover{
-    background-color: #323232;
-    border-color: #fff;
-}
-
-.features .card span{
-    display: inline-block;
-    background-color: #3a62e6;
-    padding: 2px 9px;
-    margin-bottom: 1rem;
-    font-size: 1.75rem;
-    color: #fff;
-    border-radius: 5px;
-}
-
-.features .card h4{
-    margin-bottom: 0.5rem;
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-.features .card p{
-    color: #ccc;
-    margin-bottom: 1rem;
-}
-
-.features .card a{
-    color: #fff;
-    transition: all 0.3s ease;
-}
-
-.features .card a:hover{
-    color: #1e40af;
-}
-
-.sub-header{
-    max-width: 600px;
-    margin: auto;
-    text-align: center;
-    color: #ccc;
-}
-
-.pricing{
-    margin-top: 4rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-}
-
-.pricing .card{
-    padding: 3rem 2rem;
-    background-color: #27272a;
-    display: flex;
-    flex-direction: column;
-    border: 2px solid transparent;
-    border-radius: 15px;
-    transition: all 0.3s ease;
-}
-
-.pricing .card:hover{
-    background-color: #323232;
-    border-color: #fff;
-}
-
-.pricing .card .content{
-    flex: 1;
-    margin-bottom: 2rem;
-}
-
-.pricing .card h4{
-    margin-bottom: 1rem;
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: 500;
-}
-
-.pricing .card h3{
-    color: #fff;
-    padding-bottom: 1rem;
-    margin-bottom: 2rem;
-    font-size: 2rem;
-    font-weight: 600;
-    border-bottom: 2px dashed #fff;
-}
-
-.pricing .card p{
-    color: #fff;
-    margin-bottom: 0.75rem;
-}
-
-.pricing .card p i{
-    color: #ccc;
-    font-size: 1.2rem;
-    margin-right: 0.3rem;
-}
-
-.pricing .card button{
-    color: #fff;
-    background-color: transparent;
-    border: 2px solid #fff;
-}
-
-.pricing .card button:hover{
-    background-color: #a8d5db;
-    border-color: #1e40af;
-}
-
-footer{
-    position: relative;
-    display: grid;
-    grid-template-columns: 400px repeat(3, 1fr);
-    gap: 2rem;
-}
-
-footer .column .logo{
-    max-width: 100px;
-    margin-bottom: 2rem;
-}
-
-footer .column p{
-    color: #ff0000;
-    margin-bottom: 2rem;
-}
-
-footer .column .socials{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-footer .column .socials a{
-    color: #ca7171;
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    font-size: 1.25rem;
-    border-radius: 100%;
-    transition: all 0.3s ease;
-}
-
-footer .column .socials a:hover{
-    color: #ff0000;
-    background-color: #1d4ed8;
-    border-color: #1d4ed8;
-}
-
-footer .column h4{
-    color: #ff0000;
-    margin-bottom: 2rem;
-    font-size: 1.2rem;
-    font-weight: 500;
-}
-
-footer .column > a{
-    display: block;
-    color: #b40000;
-    margin-bottom: 1rem;
-    transition: all 0.3s ease;
-}
-
-footer .column > a:hover{
-    color: #3563e4;
-}
-
-.copyright{
-    max-width: 1200px;
-    margin: auto;
-    padding: 1rem;
-    color: #b40000;
-    font-size: 0.8rem;
-    text-align: center;
-}
-
-@media (width < 900px){
-    .nav-links{
-        display: none;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy | Paragraph Academy</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #f2f2f2;
+      color: #333;
+      line-height: 1.7;
     }
-    header{
-        grid-template-columns: repeat(1, 1fr);
+    .container {
+      max-width: 1000px;
+      margin: 50px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.1);
     }
-    header .image{
-        grid-area: 1/1/2/2;
+    h1, h2 {
+      color: #0077cc;
+      margin-bottom: 20px;
     }
-    .features{
-        grid-template-columns: repeat(2, 1fr);
+    p {
+      font-size: 17px;
+      margin-bottom: 15px;
     }
-    .pricing{
-        grid-template-columns: repeat(2, 1fr);
+    form {
+      margin-top: 40px;
+      border-top: 2px solid #ddd;
+      padding-top: 30px;
     }
-    footer{
-        grid-template-columns: 1fr 200px;
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
     }
-}
-
-@media (width < 600px){
-    header .image::before{
-        display: none;
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
     }
-
-    .features{
-        grid-template-columns: repeat(1, 1fr);
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
     }
-
-    .pricing{
-        grid-template-columns: repeat(1, 1fr);
+    button:hover {
+      background-color: #0056b3;
     }
-
-    footer{
-        grid-template-columns: 1fr 150px;
-    }
-}
-
-header {
-    position: relative;
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    gap: 2rem;
-    z-index: 1;
-}
-
-.video-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1;
-}
-
-.video-bg video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-
-    </style>
-
-
-
-    <nav>
-        <div class="nav-logo">
-            <a href="#">
-                <img src="456329495_122171698646207945_5071242109533353140_n.jpg">
-            </a>
-        </div>
-
-        <ul class="nav-links" style="color: #1e40af;">
-            <li class="link"><a href="#">Home</a></li>
-            <li id="link1" class="link"><a href="#">Features</a></li>
-            <li id="link2" class="link"><a href="#">Education</a></li>
-            <li id="link3" class="link"><a href="#">About</a></li>
-            
-        </ul>
-        
-    </nav>
-<header class="container">
-    <div class="video-bg">
-        <video autoplay loop muted playsinline>
-            <source src="https://github.com/ParagraphAcademy/Paragraph-Academy/raw/refs/heads/main/3569f10f-795e-4ad0-9ab4-f471916496d7%20(online-video-cutter.com).mp4
-                " type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-    <div class="content">
-        <span class="blur"></span>
-        <span class="blur"></span>
-        <h1 style="color: rgb(255, 0, 0)">PARAGRAPH ACADEMY</h1>
-        <h3 style="color: #ecff45;">Write your success with paragraph<span></span></h3>
-        <p></p>
-        <button class="btn"><a href="learnmore.html">Get Started</a></button>
-    </div>
-    
-    <div class="image">
-        <img src="consulting-1024.webp">
-    </div>
-</header>
-
-   
-    <section class="container">
-        <h2 class="header" style="color: #000000;">OUR FEATURES</h2>
-        <div class="features">
-            <div class="card">
-                <img src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/australia.jpg?raw=true" style="height: 30%;">
-                <h1 style="color: #ecff45;">Study in Australia</h1>
-                <p style="font-size: small;">
-                    Australia is widely regarded as one of the top destinations for students seeking to study abroad. It offers world-class education and a vibrant multicultural environment, making it a popular choice for international students. Beyond academics, Australia is an exciting place to explore, with its stunning landscapes and diverse attractions. From pristine beaches and the vast ocean to breathtaking mountains and lush forests, the country offers endless opportunities for adventure. The warm hospitality of its people, combined with its natural beauty, makes Australia not only an ideal study destination but also a place to create unforgettable memories.
-                </p>
-                <a href="australia.html">Learn More<i class="ri-arrow-right-line"></i></a>
-            </div>
-            <div class="card">
-                <img src="c:\Users\Admin\Downloads\ChatGPT Image Jun 22, 2025, 12_02_15 PM.png" style="height: 30%;">
-                <h1 style="color: #ecff45;">Study in USA</h1>
-                <p style="font-size: small;">
-                    Studying in the United States opens up a world of opportunities, allowing you to enhance your career prospects on a global scale. Renowned for its academic excellence, the US is considered by many international students, including those from Nepal, to be the top destination for higher education. The country’s universities provide world-class education, cutting-edge research facilities, and a diverse academic environment, making it the ultimate place to pursue your academic goals. With numerous opportunities for personal and professional growth, studying in the US allows you to not only gain a top-tier education but also build valuable international connections that will shape your future career.
-
-
-                </p>
-                <a href="#">Learn More <i class="ri-arrow-right-line"></i></a>
-            </div>
-            <div class="card">
-                <img src="c:\Users\Admin\Downloads\ChatGPT Image Jun 22, 2025, 11_57_04 AM.png" style="height: 30%;">
-                <h1 style="color: #ecff45;">Study in Canada</h1>
-                <p style="font-size: small;">
-                    If you’re considering studying in Canada from Nepal, there are a few important things you should know before making any decisions. Proper preparation is key to ensuring a smooth transition and increasing your chances of success. Understanding the admission process, visa requirements, and living conditions in Canada will help you make informed choices and set you on the right path to achieving your dream of studying abroad. Taking the time to plan ahead will not only ease the process but also help you adapt to your new life in Canada, ensuring your academic journey is both fulfilling and successful.
-                </p>
-                <a href="#">Learn More <i class="ri-arrow-right-line"></i></a>
-            </div>
-            <div class="card">
-                <img src="c:\Users\Admin\Desktop\foto for website\uk.jpg" style="height: 30%;">
-                <h1 style="color: #ecff45;">Study in the UK</h1>
-                <p style="font-size: small;">
-                    Studying abroad in the UK presents an incredible opportunity to excel academically while immersing yourself in a rich cultural experience. The UK is home to some of the world’s most prestigious universities, offering exceptional educational programs that foster innovation and critical thinking. Beyond academics, studying in the UK allows you to expand your horizons by experiencing a vibrant culture, steeped in history and diversity. You’ll have the chance to meet people from all over the world, explore unique traditions, and gain a global perspective that will enrich both your personal and professional life.
-
-
-                </p>
-                <a href="#">Learn more <i class="ri-arrow-right-line"></i></a>
-            </div>
-            
-           
-        </div>
-    </section>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Test Prep Cards</title>
-</head>
-<body style="margin: 0; padding: 40px 20px; font-family: 'Segoe UI', sans-serif; background-color: #ffffff; display: flex; flex-wrap: wrap; gap: 30px; justify-content: center;">
-
-  <!-- IELTS -->
-  <div style="background-color: #002f6c; border-radius: 16px; width: 300px; padding: 25px; color: white; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);">
-    <h2 style="margin: 0 0 10px;">IELTS</h2>
-    <p style="font-size: 14.5px; line-height: 1.6;">
-      Master Listening, Reading, Writing, and Speaking with expert-led sessions and test simulations.
-    </p>
-    <a href="IELTS.HTML" style="margin-top: 10px; display: inline-block; padding: 8px 16px; font-size: 13px; background-color: white; color: #002f6c; text-decoration: none; border-radius: 6px; font-weight: bold;">Read More</a>
-  </div>
-
-  <!-- GMAT -->
-  <div style="background-color: #002f6c; border-radius: 16px; width: 300px; padding: 25px; color: white; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);">
-    <h2 style="margin: 0 0 10px;">GMAT</h2>
-    <p style="font-size: 14.5px; line-height: 1.6;">
-      Get expert prep on Quant, Verbal, IR, and AWA sections to ace your business school journey.
-    </p>
-    <a href="gmat.html" style="margin-top: 10px; display: inline-block; padding: 8px 16px; font-size: 13px; background-color: white; color: #002f6c; text-decoration: none; border-radius: 6px; font-weight: bold;">Read More</a>
-  </div>
-
-  <!-- GRE -->
-  <div style="background-color: #002f6c; border-radius: 16px; width: 300px; padding: 25px; color: white; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);">
-    <h2 style="margin: 0 0 10px;">GRE</h2>
-    <p style="font-size: 14.5px; line-height: 1.6;">
-      Learn powerful strategies for vocabulary, quantitative reasoning, and analytical writing.
-    </p>
-    <a href="gre.html" style="margin-top: 10px; display: inline-block; padding: 8px 16px; font-size: 13px; background-color: white; color: #002f6c; text-decoration: none; border-radius: 6px; font-weight: bold;">Read More</a>
-  </div>
-
-  <!-- PTE -->
-  <div style="background-color: #002f6c; border-radius: 16px; width: 300px; padding: 25px; color: white; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);">
-    <h2 style="margin: 0 0 10px;">PTE</h2>
-    <p style="font-size: 14.5px; line-height: 1.6;">
-      Fast-paced computer-based test prep including AI-scored simulations and fluency coaching.
-    </p>
-    <a href="pte.html" style="margin-top: 10px; display: inline-block; padding: 8px 16px; font-size: 13px; background-color: white; color: #002f6c; text-decoration: none; border-radius: 6px; font-weight: bold;">Read More</a>
-  </div>
-
-</body>
-</html>
-
-    
-<img src="logo1.png">
-    <section class="container">
-        <h2 class="header" style="color: #ff0000;">Commence with your goals</h2>
-        <p class="sub-header" style="color: #ff0000;">
-           Paragraph Academy offers you the best education consultancy in Nepal.
-        </p>
-        <div class="pricing">
-            <div class="card">
-                <div class="content">
-                    <img src="gtyujklp-09iuhjkhut6y698upij;.avif">
-                    <h4 style="color: #ecff45;">Visa Support Services</h4>
-                    
-                    <p style="font-size: small;">
-                        We provide comprehensive visa consulting services, backed by a team of experienced professionals dedicated to guiding you through every step of the process. Our experts take the time to understand your unique goals and requirements, ensuring personalized support to help you navigate the complexities of visa applications with confidence and ease. Whether you’re pursuing work, study, or travel opportunities, we’re here to make your journey smoother and more successful.
-                    </p>
-                    <p>
-                       
-                    </p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="content">
-                    <img src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/viber_image_2025-06-22_12-20-42-081.jpg?raw=true">
-                    <h4 style="color: #ecff45;">Enrollment Assistance</h4>
-                    <p style="font-size: small;">
-                        We’ll guide you through every step of the process, from the initial stages to securing admission in a college or university that perfectly aligns with your aspirations and needs. Our dedicated team will assist you in making informed decisions, ensuring you choose the best educational path, and providing support until you successfully gain admission to the institution that’s right for you.
-                    </p>
-                    <p>
-                        
-                    </p>
-                    <p>
-                        
-                    </p>
-                </div>
-                            </div>
-            <div class="card">
-                <div class="content">
-                    <img src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/travel%20and%20stay.jpg?raw=true">
-                    <h4 style="color: #ecff45;">Trip Planning & Stay Support</h4>
-                    <p style="font-size: small;">
-                        Looking for the best accommodation options while studying abroad? We’ve got you covered. Our team will help you find safe, comfortable, and affordable housing that suits your needs, whether it’s on-campus dorms or off-campus apartments. We ensure that your living situation enhances your study experience, providing peace of mind while you focus on your academic goals. 
-                    </p>
-                    <p>
-                        
-                    </p>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University Image Grid</title>
-</head>
-<h1 style="text-align: center;">Top universities represented by Paragraph Academy</h1>
-<body>
-
-<div class="grid-container" id="gridContainer" style="display: flex; overflow-x: hidden; width: 100%; justify-content: center; align-items: center; position: relative; padding: 20px;">
-    <button class="button button-left" onclick="scrollGrid('left')" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); color: white; border: none; padding: 10px; cursor: pointer; z-index: 10;">←</button>
-
-    <!-- University 1 -->
-    <div class="university" style="min-width: 300px; margin: 0 15px; text-align: center; transition: transform 0.3s ease-in-out; display: block; position: relative;">
-        <img src="" alt="University 1" style="width: 300px; height: 225px; object-fit: cover; border-radius: 10px;">
-        <p style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; font-weight: bold; font-size: 16px; background-color: rgba(0, 0, 0, 0.5); padding: 5px 10px; border-radius: 5px;">Cambridge University</p>
-    </div>
-
-    <!-- University 2 -->
-    <div class="university" style="min-width: 300px; margin: 0 15px; text-align: center; transition: transform 0.3s ease-in-out; display: block; position: relative;">
-        <img src="" alt="University 2" style="width: 300px; height: 225px; object-fit: cover; border-radius: 10px;">
-        <p style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; font-weight: bold; font-size: 16px; background-color: rgba(0, 0, 0, 0.5); padding: 5px 10px; border-radius: 5px;">University of lille</p>
-    </div>
-
-    <!-- University 3 -->
-    <div class="university" style="min-width: 300px; margin: 0 15px; text-align: center; transition: transform 0.3s ease-in-out; display: block; position: relative;">
-        <img src=" alt="University 3" style="width: 300px; height: 225px; object-fit: cover; border-radius: 10px;">
-        <p style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; font-weight: bold; font-size: 16px; background-color: rgba(0, 0, 0, 0.5); padding: 5px 10px; border-radius: 5px;">University of toronto</p>
-    </div>
-
-    <!-- University 4 -->
-    <div class="university" style="min-width: 300px; margin: 0 15px; text-align: center; transition: transform 0.3s ease-in-out; display: none; position: relative;">
-        <img src="" alt="University 4" style="width: 300px; height: 225px; object-fit: cover; border-radius: 10px;">
-        <p style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; font-weight: bold; font-size: 16px; background-color: rgba(0, 0, 0, 0.5); padding: 5px 10px; border-radius: 5px;">University 4</p>
-    </div>
-
-    <!-- University 5 -->
-    <div class="university" style="min-width: 300px; margin: 0 15px; text-align: center; transition: transform 0.3s ease-in-out; display: none; position: relative;">
-        <img src="" alt="University 5" style="width: 300px; height: 225px; object-fit: cover; border-radius: 10px;">
-        <p style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; font-weight: bold; font-size: 16px; background-color: rgba(0, 0, 0, 0.5); padding: 5px 10px; border-radius: 5px;">University 5</p>
-    </div>
-
-    <button class="button button-right" onclick="scrollGrid('right')" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); color: white; border: none; padding: 10px; cursor: pointer; z-index: 10;">→</button>
-</div>
-
-<script>
-    let currentInde = 0;
-
-    function scrollGrid(direction) {
-        const container = document.getElementById("gridContainer");
-        const universities = container.querySelectorAll(".university");
-        const totalUniversities = universities.length;
-
-        // Hide all universities
-        universities.forEach(university => {
-            university.style.display = "none";
-        });
-
-        // Adjust currentIndex based on the direction
-        if (direction === 'left') {
-            currentIndex = (currentIndex === 0) ? totalUniversities - 3 : currentIndex - 1;
-        } else if (direction === 'right') {
-            currentIndex = (currentIndex === totalUniversities - 3) ? 0 : currentIndex + 1;
-        }
-
-        // Show the selected universities (3 at a time)
-        for (let i = currentIndex; i < currentIndex + 3; i++) {
-            universities[i].style.display = "block";
-        }
-    }
-
-    // Initially display the first 3 universities
-    window.onload = function() {
-        scrollGrid('right');
-    }
-</script>
-
-</body>
-</html>
-
-
-
-    <section class="container">
-        <h2 class="header" style="color: #ff0000;">Director's Message
-            
-        </h2>
-        <p class="sub-header" style="color: #ff0000;">
-          
-        </p>
-        <div class="pricing">
-            <div class="card" style="width: 15cm;">
-                <div class="content">
-                    <img src="c:\Users\Admin\Pictures\Screenshots\Screenshot (647).png">
-                    <h4 style="color: #ecff45;">Alok Sir</h4>
-                    
-                    <p style="font-size: small;">
-                        "Welcome to Paragraph Academy,
-                        At Paragraph Academy, we believe education should not just inform—it should transform. My vision has always been to create a space where students are not only taught but guided, not only tested but inspired. Every paragraph you write is a step toward clarity, confidence, and success.
-                        
-                        Our mission is simple: to turn potential into power. Whether you're preparing for academic exams or striving to sharpen your communication skills, we’re here to provide expert guidance, personalized mentorship, and a supportive learning environment.
-                        
-                        I invite every learner to join us in this journey of growth, and I promise—we will walk every step together until you succeed."
-                    </p>
-                    <p>
-                       
-                    </p>
-                </div>
-                
-            </div>
-            <div class="card" style="width: 15cm;">
-                <div class="content">
-                    <img src="137390129_1104713789969074_6694070765241828294_n.jpg">
-                    <h4 style="color: #ecff45;">Dillip Sharma</h4>
-                    <p style="font-size: small;">
-                        Dear Students and Parents,
-At Paragraph Academy, we are driven by the belief that the right education can change lives. Our focus has always been on maintaining academic excellence with discipline, values, and results. In this ever-changing world, the ability to express clearly and powerfully through writing is a skill that opens countless doors.
-
- I ensure that our institution maintains high standards—through experienced faculties, innovative methods, and a strong moral foundation. With teamwork, dedication, and smart strategy, we aim to shape not just better students, but better humans.
-
-Thank you for trusting Paragraph Academy. Together, we are not just building futures—we are building leaders.
-                    </p>
-                    <p>
-                        
-                    </p>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-
-   <h1 style="text-align: center;">Testimonials</h1>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testimonial Scrolling</title>
+  </style>
 </head>
 <body>
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <p>
+      At <strong>Paragraph Academy</strong>, we take your privacy seriously. We are committed to protecting the personal information of our students, clients, and website visitors. This policy outlines how we collect, use, and safeguard your data.
+    </p>
 
-<div class="testimonial-container" id="testimonialContainer" style="display: flex; overflow-x: hidden; width: 100%; justify-content: center; align-items: center; position: relative;">
-    <button class="button button-left" onclick="scrollTestimonials('left')" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); color: white; border: none; padding: 10px; cursor: pointer; z-index: 10;">←</button>
+    <h2>Information We Collect</h2>
+    <p>We may collect the following information:</p>
+    <ul>
+      <li>Full name, email address, phone number</li>
+      <li>Documents for applications (like transcripts, ID copies)</li>
+      <li>Feedback, testimonials, or photos (with permission)</li>
+    </ul>
 
-    <!-- Testimonial 1 -->
-    <div class="testimonial" style="min-width: 300px; margin: 0 15px; text-align: center; transition: transform 0.3s ease-in-out; display: block;">
-        <p style="max-width: 400px; margin: 0 auto; text-align: left;">
-            "Choosing Paragraph Academy was one of the best decisions I’ve ever made. The team provided me with personalized guidance and unwavering support throughout my journey. They made the complex application process simple and helped me craft a strong, standout application. What impressed me most was how they tailored their advice to my unique goals and ambitions. They took the time to get to know me, my strengths, and my areas for growth, and built a strategy around that. I felt truly heard and supported every step of the way."
-        </p>
-        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
-            <img src="" alt="Profile Picture" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-        </div>
-    </div>
+    <h2>How We Use Your Information</h2>
+    <p>We only use your information to:</p>
+    <ul>
+      <li>Provide educational counseling and services</li>
+      <li>Contact you for follow-ups or updates</li>
+      <li>Help in applications and visa processes</li>
+      <li>Improve our services and support</li>
+    </ul>
 
-    <!-- Testimonial 2 -->
-    <div class="testimonial" style="min-width: 300px; margin: 0 15px; text-align: center; transition: transform 0.3s ease-in-out; display: none;">
-        <p style="max-width: 400px; margin: 0 auto; text-align: left;">
-            "Paragraph Academy helped me identify my strengths and made my application stand out. I was initially overwhelmed by the idea of crafting a strong personal statement, but their team worked closely with me to refine my ideas and present my experiences in the best light. I felt empowered to showcase my accomplishments and my passion for my field of study. The feedback was constructive, timely, and actionable. The process was smooth, and I felt confident submitting my application, knowing that I had their full support."
-        </p>
-        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
-            <img src="" alt="Profile Picture" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-        </div>
-    </div>
+    <h2>Sharing Your Information</h2>
+    <p>
+      We do not sell or share your personal information with any third party unless required by law or if you provide written consent (especially for universities or embassies).
+    </p>
 
-    <!-- Testimonial 3 -->
-    <div class="testimonial" style="min-width: 300px; margin: 0 15px; text-align: center; transition: transform 0.3s ease-in-out; display: none;">
-        <p style="max-width: 400px; margin: 0 auto; text-align: left;">
-            "Thanks to Paragraph Academy, I got accepted into my dream university and learned invaluable skills for my future career. Not only did they help me with the application process, but they also provided guidance on how to align my long-term career goals with the programs I was applying to. They helped me see the bigger picture, beyond just getting into college. I now feel more prepared to face the challenges of university life, and I owe much of my success to their expertise. Their holistic approach to education has truly set me up for success."
-        </p>
-        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
-            <img src="" alt="Profile Picture" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-        </div>
-    </div>
+    <h2>Use of Photos, Reviews, and Documents</h2>
+    <p>
+      Sometimes we may wish to use your feedback, photos, or documents for promotion, testimonials, or our official website/social media. We will only do so if you give permission through the form below.
+    </p>
 
-    <button class="button button-right" onclick="scrollTestimonials('right')" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); color: white; border: none; padding: 10px; cursor: pointer; z-index: 10;">→</button>
-</div>
+    <!-- COPYRIGHT PERMISSION FORM -->
+    <form>
+      <h2>📄 Copyright Permission Form</h2>
 
-<script>
-    let currentIndex = 0;
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required />
 
-    function scrollTestimonials(direction) {
-        const container = document.getElementById("testimonialContainer");
-        const testimonials = container.querySelectorAll(".testimonial");
-        const totalTestimonials = testimonials.length;
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required />
 
-        // Hide all testimonials
-        testimonials.forEach(testimonial => {
-            testimonial.style.display = "none";
-        });
+      <label for="permission">
+        What do you allow us to use (check all that apply)?
+      </label>
+      <input type="checkbox" id="photos" name="usage" value="photos"> Photos<br>
+      <input type="checkbox" id="reviews" name="usage" value="reviews"> Reviews / Testimonials<br>
+      <input type="checkbox" id="documents" name="usage" value="documents"> Academic Documents (for university showcase only)<br><br>
 
-        // Adjust currentIndex based on the direction
-        if (direction === 'left') {
-            currentIndex = (currentIndex === 0) ? totalTestimonials - 1 : currentIndex - 1;
-        } else if (direction === 'right') {
-            currentIndex = (currentIndex === totalTestimonials - 1) ? 0 : currentIndex + 1;
-        }
+      <label for="message">Any specific instructions or conditions?</label>
+      <textarea id="message" name="message" placeholder="Write your message..."></textarea>
 
-        // Show the selected testimonial
-        testimonials[currentIndex].style.display = "block";
-    }
-
-    // Initially display the first testimonial
-    window.onload = function() {
-        scrollTestimonials('right');
-    }
-</script>
-
+      <button type="submit">Submit Permission</button>
+    </form>
+  </div>
 </body>
 </html>
 
-
-<!-- Scroll to Top Button -->
-<button id="scrollToTopBtn" onclick="scrollToTop()">↑ Scroll to Top</button>
-
-<script>
-    // Scroll to top function
-    function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Show the "Scroll to Top" button when scrolling down
-    window.onscroll = function() {
-        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-            scrollToTopBtn.style.display = "block";
-        } else {
-            scrollToTopBtn.style.display = "none";
-        }
-    }
-</script>
-
-<style>
-    /* Scroll to top button style */
-    #scrollToTopBtn {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background-color: rgba(0, 0, 0, 0.7);
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        font-size: 18px;
-        border-radius: 5px;
-        display: none; /* Hidden by default */
-        z-index: 10;
-    }
-
-    #scrollToTopBtn:hover {
-        background-color: rgba(0, 0, 0, 0.9);
-    }
-</style>
-
-
-
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.985992983084!2d84.42919275037691!3d27.68682779505004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3994fb3057877cf5%3A0x48d337036c5c59c!2sMCPH%2BRV8%20Bharatpur%20Height%2C%20Birendra%20Chowk%2C%20Bharatpur%2044200!5e0!3m2!1sen!2snp!4v1737199497894!5m2!1sen!2snp" width="1500" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-    <footer class="container">
-        <span class="blur"></span>
-        <span class="blur"></span>
-        <div class="column">
-            <div class="logo">
-                <img src="images/logo.png">
-            </div>
-            <p>
-                Research and training center
-            </p>
-            <div class="socials">
-                <a href="https://www.facebook.com/profile.php?id=61556238353653"><i class="ri-facebook-line"></i></a>
-                <a href="#"><i class="ri-instagram-line"></i></a>
-                <a href="#"><i class="ri-twitter-line"></i></a>
-            </div>
-        </div>
-        <div class="column">
-            <h4>PA</h4>
-            <a href="#"></a>
-            <a href="#"></a>
-            <a href="#"></a>
-        </div>
-        <div class="column">
-            <h4>About Us</h4>
-            <a href="blog.html">Blogs</a>
-            <a href="channel.html">Channels</a>
-            <a href="#">Sponsors</a>
-        </div>
-        <div class="column">
-            <h4>Contact</h4>
-            <a href="contact.html">Contact Us</a>
-            <a href="privacypolicy.html">Privicy Policy</a>
-            <a href="termsnconditions.html">Terms & Conditions</a>
-        </div>
-    </footer>
-
-    <div class="copyright">
-        Copyright © 2025 Paragraph Academy. All Rights Reserved.
-    </div>
-
-
-    <script>
-        function scrollToElement(elementSelector, instance = 0) {
-            // Select all elements that match the given selector
-            const elements = document.querySelectorAll(elementSelector);
-            // Check if there are elements matching the selector and if the requested instance exists
-            if (elements.length > instance) {
-                // Scroll to the specified instance of the element
-                elements[instance].scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-        
-        const link1 = document.getElementById("link1");
-        const link2 = document.getElementById("link2");
-        const link3 = document.getElementById("link3");
-        
-        link1.addEventListener('click', () => {
-            scrollToElement('.header');
-        });
-        
-        link2.addEventListener('click', () => {
-            // Scroll to the second element with "header" class
-            scrollToElement('.header', 1);
-        });
-        
-        link3.addEventListener('click', () => {
-            scrollToElement('.column');
-        });
-
-         
-    </script>
-</body>
-
-</html>
