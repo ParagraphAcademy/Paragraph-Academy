@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Form Style Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #87CEEB;
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 64px;
+        }
+
+        .header p {
+            margin: 10px 0 0;
+            font-size: 24px;
+        }
+
+        .offer-container {
+            background-color: #87CEEB;
+            max-width: 600px;
+            margin: 20px auto;
+            border-radius: 8px;
+            padding: 30px;
+            color: #333;
+            text-align: center;
+        }
+
+        .offer-container h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .offer-container h1 {
+            margin: 10px 0;
+            font-size: 48px;
+            color: #00008B;
+        }
+
+        .offer-container p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .offer-container .tick {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .offer-container .tick span:first-child {
+            color: green;
+            font-size: 20px;
+        }
+
+        .offer-container .tick span:last-child {
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        .offer-container .book-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #FF8C00;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .form-group.inline {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group.inline label {
+            margin: 0 10px 0 0;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #357ae8;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>IELTS Test Preparation</h1>
+        <p>Enhance your skills and ace the IELTS exam with our comprehensive preparation course.</p>
+    </div>
+
+    <div class="offer-container">
+        <h2>IELTS Course</h2>
+        <h1>NPR 15,000</h1>
+        <p>per session</p>
+
+        <div class="tick">
+            <span>&#10003;</span>
+            <span>Complete classes - 6 weeks</span>
+        </div>
+        <div class="tick">
+            <span>&#10003;</span>
+            <span>Free Practice Materials</span>
+        </div>
+        <div class="tick">
+            <span>&#10003;</span>
+            <span>Full Teaching Support</span>
+        </div>
+
+        <a href="#googleForm" class="book-btn">Book Now</a>
+    </div>
+
+    <div class="form-container">
+        <div class="form-header">
+            <h1>Google Form Style Page</h1>
+            <p>Please fill out the form below.</p>
+        </div>
+
+        <form id="googleForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile Number</label>
+                <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" pattern="[0-9]{10}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Gender</label>
+                <div class="form-group inline">
+                    <input type="radio" id="male" name="gender" value="Male">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="Female">
+                    <label for="female">Female</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="dropdown">Choose an Option</label>
+                <select id="dropdown" name="dropdown">
+                    <option value="">Select an option</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="hobbies">Hobbies</label>
+                <div class="form-group inline">
+                    <input type="checkbox" id="reading" name="hobbies" value="Reading">
+                    <label for="reading">Reading</label>
+                    <input type="checkbox" id="traveling" name="hobbies" value="Traveling">
+                    <label for="traveling">Traveling</label>
+                    <input type="checkbox" id="sports" name="hobbies" value="Sports">
+                    <label for="sports">Sports</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="feedback">Feedback</label>
+                <textarea id="feedback" name="feedback" rows="4" placeholder="Enter your feedback"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+
+        <div class="form-footer">
+            <p>Thank you for your time!</p>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.book-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('googleForm').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('googleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Form submitted successfully!');
+        });
+    </script>
+</body>
+</html>
+
