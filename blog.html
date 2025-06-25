@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Paragraph Academy Bharatpur | Blog</title>
+  <style>
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      background: #f9f9f9;
+      color: #333;
+      padding-bottom: 80px;
+    }
+
+    /* Header */
+    header {
+      background: #004a99;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    /* Image Banner */
+    .featured-image img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+    }
+
+    /* Main Blog Section */
+    main {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    article h2 {
+      color: #004a99;
+      margin-top: 20px;
+    }
+    article p,
+    article ul,
+    article ol {
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 15px 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    /* Scroll to Top Button */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 90px;
+      right: 25px;
+      display: none;
+      background-color: #004a99;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      font-size: 20px;
+      cursor: pointer;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+    #scrollTopBtn:hover {
+      background-color: #003366;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Paragraph Academy Bharatpur</h1>
+    <p>Empowering Futures Through Language Excellence</p>
+  </header>
+
+  <section class="featured-image">
+    <img src="c:\Users\Admin\Desktop\506390216_2169651753475267_6402637808710751266_n.jpg" style="width: 100%; height: auto;" />
+
+  </section>
+
+  <main>
+    <article>
+      <h2>Introduction</h2>
+      <p>
+        Located in Bharatpur-10, opposite Birendra Multiple Campus, Paragraph Academy is a modern
+        education hub helping students prepare for international language tests like IELTS, PTE, and SAT.
+        With a tagline "Excellence in Every Lesson", the academy offers both free and premium test prep courses.
+      </p>
+
+      <h2>Courses Offered</h2>
+      <ul>
+        <li><strong>IELTS & PTE Coaching</strong> - With regular workshops and sessions, both free and paid.</li>
+        <li><strong>SAT & GMAT Preparation</strong> - Premium coaching for students aiming to study abroad.</li>
+        <li><strong>Awareness Seminars</strong> - On test scams, skills, and learning strategies.</li>
+      </ul>
+
+      <h2>Why Choose Paragraph Academy?</h2>
+      <ol>
+        <li>Free introductory events and paid coaching options</li>
+        <li>Conveniently located near Birendra Multiple Campus</li>
+        <li>Strong online presence and community support</li>
+      </ol>
+
+      <h2>Final Thoughts</h2>
+      <p>
+        For students in Chitwan looking to prepare for global opportunities, Paragraph Academy stands out
+        as a reliable and growing educational platform. Stay updated via Instagram or WhatsApp for upcoming sessions.
+      </p>
+    </article>
+  </main>
+
+  <button id="scrollTopBtn" title="Go to top">↑</button>
+
+  <footer>
+    <p>© 2025 Paragraph Academy Blog | Designed by rsu</p>
+  </footer>
+
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+    window.onscroll = function () {
+      scrollTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+    };
+
+    scrollTopBtn.onclick = function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+  </script>
+</body>
+</html>
