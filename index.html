@@ -706,25 +706,29 @@ header {
           
       <style>
   @media (max-width: 768px) {
-    .responsive-card {
+    .card {
       width: 90% !important;
       max-width: 100% !important;
     }
-  }
 
-  @media (min-width: 769px) {
-    .responsive-card {
-      width: 15cm !important;
+    .content img {
+      width: 100% !important;
+      height: auto !important;
+    }
+
+    .content p {
+      font-size: 0.9rem !important;
+      line-height: 1.5 !important;
     }
   }
 </style>
 
-<div style="display: flex; justify-content: center; padding: 20px;">
-  <div class="responsive-card" style="background-color: #222; color: white; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.3); overflow: hidden;">
-    <div style="padding: 15px;">
-      <img src="c:\Users\Admin\Pictures\Screenshots\Screenshot (647).png" alt="Alok Sir" style="width: 100%; height: auto; border-radius: 10px; object-fit: cover;">
+<div class="pricing" style="display: flex; justify-content: center; padding: 20px;">
+  <div class="card" style="width: 15cm; background-color: #222; color: white; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.3); overflow: hidden;">
+    <div class="content" style="padding: 15px;">
+      <img src="c:\Users\Admin\Pictures\Screenshots\Screenshot (647).png" style="width: 100%; height: auto; border-radius: 10px; object-fit: cover;">
       <h4 style="color: #ecff45; margin-top: 10px;">Alok Sir</h4>
-      <p style="font-size: 0.9rem; line-height: 1.5;">
+      <p style="font-size: small;">
         "Welcome to Paragraph Academy,<br><br>
         At Paragraph Academy, we believe education should not just inform—it should transform. My vision has always been to create a space where students are not only taught but guided, not only tested but inspired. Every paragraph you write is a step toward clarity, confidence, and success.<br><br>
         Our mission is simple: to turn potential into power. Whether you're preparing for academic exams or striving to sharpen your communication skills, we’re here to provide expert guidance, personalized mentorship, and a supportive learning environment.<br><br>
