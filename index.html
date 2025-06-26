@@ -454,17 +454,30 @@ header {
 
 
 
-    <div class="content">
-        <span class="blur"></span>
-        <span class="blur"></span>
-        <h1 style="color: rgb(255, 0, 0)">PARAGRAPH ACADEMY</h1>
-        <h3 style="color: #ecff45;">Write your success with paragraph<span></span></h3>
-        <p></p>
-        <button class="btn" style="background-color: blue; border: none; padding: 10px 20px;">
-  <a href="learnmore.html" style="color: white; text-decoration: none;">Get Started</a>
-</button>
+<style>
+  .fade-in {
+    opacity: 0;
+    animation: fadeInAnimation 2s ease forwards;
+  }
 
-    </div>
+  @keyframes fadeInAnimation {
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+
+<div class="content">
+    <span class="blur"></span>
+    <span class="blur"></span>
+    <h1 class="fade-in" style="color: rgb(255, 0, 0)">PARAGRAPH ACADEMY</h1>
+    <h3 class="fade-in" style="color: #ecff45;">Write your success with paragraph<span></span></h3>
+    <p class="fade-in"></p>
+    <button class="btn fade-in" style="background-color: blue; border: none; padding: 10px 20px;">
+      <a href="learnmore.html" style="color: white; text-decoration: none;">Get Started</a>
+    </button>
+</div>
+
     
     <div class="image">
         <img src="https://cdn4.iconfinder.com/data/icons/got-an-idea/128/consulting-1024.png">
