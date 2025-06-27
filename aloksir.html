@@ -18,16 +18,26 @@
       line-height: 1.6;
     }
 
-    .hero {
-      background: url('https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/viber_image_2025-06-26_07-19-27-825.jpg?raw=true') no-repeat center center/cover;
-      height: 100vh;
-      width: 100%;
-    }
-
     .container {
       max-width: 900px;
       margin: auto;
       padding: 3rem 5%;
+    }
+
+    .director-section {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .director-img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1.5rem;
+      border: 3px solid #0052cc;
     }
 
     .director-info {
@@ -56,8 +66,9 @@
     }
 
     @media (max-width: 600px) {
-      .hero {
-        height: 40vh;
+      .director-img {
+        width: 100px;
+        height: 100px;
       }
 
       .director-info h2 {
@@ -73,24 +84,25 @@
 </head>
 <body>
 
-  <div class="hero"></div>
-
   <div class="container">
-    <div class="director-info">
-      <h2>Alok sir</h2>
-      <p>Director, Paragraph Academy</p>
-    </div>
+    <div class="director-section">
+      <div class="director-info">
+        <img src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1" alt="Director Photo" class="director-img">
+        <h2>Mr. Alessandro Romano</h2>
+        <p>Director, Paragraph Academy</p>
+      </div>
 
-    <div class="message">
-      <p>
-        At Paragraph Academy, our mission is to inspire learners to express, explore, and elevate their knowledge through structured and creative writing. We believe that the ability to write clearly is not just a skill — it’s a superpower.
-      </p>
-      <p>
-        As Director, I am proud to witness young minds grow into confident communicators. Whether you're just beginning your writing journey or sharpening advanced skills, our platform is built to support you.
-      </p>
-      <p>
-        Thank you for being a part of this community. Let’s keep writing your future — one paragraph at a time.
-      </p>
+      <div class="message">
+        <p>
+          At Paragraph Academy, our mission is to inspire learners to express, explore, and elevate their knowledge through structured and creative writing. We believe that the ability to write clearly is not just a skill — it’s a superpower.
+        </p>
+        <p>
+          As Director, I am proud to witness young minds grow into confident communicators. Whether you're just beginning your writing journey or sharpening advanced skills, our platform is built to support you.
+        </p>
+        <p>
+          Thank you for being a part of this community. Let’s keep writing your future — one paragraph at a time.
+        </p>
+      </div>
     </div>
   </div>
 
