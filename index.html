@@ -591,9 +591,6 @@ header {
 
 </body>
 </html>
-
-    
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -601,12 +598,14 @@ header {
   <title>Scroll Fade Out Image</title>
   <style>
     body {
-      height: 2000px; /* So you can scroll */
+      height: 2000px; /* So we can scroll */
       margin: 0;
     }
 
     .fade-on-scroll {
       width: 100%;
+      max-height: 400px;
+      object-fit: cover;
       position: sticky;
       top: 0;
       z-index: 10;
@@ -616,7 +615,8 @@ header {
 </head>
 <body>
 
-  <img class="fade-on-scroll" src="https://raw.githubusercontent.com/ParagraphAcademy/Paragraph-Academy/main/viber_image_2025-01-18_10-09-34-162.png" alt="Scroll Fade">
+  <!-- Example placeholder image -->
+  <img class="fade-on-scroll" src="https://images.unsplash.com/photo-1606788075761-5b57e2f86b2d?auto=format&fit=crop&w=1400&q=80" alt="Scroll Fade">
 
   <script>
     const image = document.querySelector('.fade-on-scroll');
@@ -642,7 +642,6 @@ header {
 
 </body>
 </html>
-
     <section class="container">
         <h2 class="header" style="color: #ff0000;">Embark on your mission.</h2>
         <p class="sub-header" style="color: #ff0000;">
