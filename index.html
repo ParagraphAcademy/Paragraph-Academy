@@ -969,3 +969,102 @@ header {
 </body>
 
 </html>
+<!-- Add Firebase SDKs if not already on your site -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+<script>
+  (function() {
+    const firebaseConfig = {
+      apiKey: "AIzaSyBn61cQIkprqN_1jZoxu5kBOpbk0Qv5tlM",
+      authDomain: "paragraph-academy.firebaseapp.com",
+      projectId: "paragraph-academy",
+      storageBucket: "paragraph-academy.appspot.com",
+      messagingSenderId: "5520826036",
+      appId: "1:5520826036:web:b5c60bcf2af0cdcb2901e1",
+      measurementId: "G-PY98WNNN67"
+    };
+
+    const SECRET_PASSKEY = "pacademyheightpara@123";
+
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    const db = firebase.firestore();
+    const docRef = db.collection("siteContent").doc("editableText");
+
+    // Prompt for passkey
+    const enteredPasskey = prompt("Enter passkey to edit content:");
+
+    if (enteredPasskey === SECRET_PASSKEY) {
+      // Create editor UI elements
+      const container = document.createElement('div');
+      container.style.border = "2px solid #444";
+      container.style.padding = "10px";
+      container.style.margin = "20px 0";
+      container.style.backgroundColor = "#f9f9f9";
+
+      const textarea = document.createElement('textarea');
+      textarea.rows = 10;
+      textarea.cols = 70;
+      textarea.placeholder = "Loading content...";
+      textarea.style.display = "block";
+      textarea.style.marginBottom = "10px";
+
+      const saveBtn = document.createElement('button');
+      saveBtn.textContent = "Save Content";
+      saveBtn.style.padding = "8px 15px";
+      saveBtn.style.cursor = "pointer";
+
+      const status = document.createElement('p');
+      status.style.fontWeight = "bold";
+      status.style.marginTop = "10px";
+
+      container.appendChild(textarea);
+      container.appendChild(saveBtn);
+      container.appendChild(status);
+
+      // Insert editor at the top of the body (or change as needed)
+      document.body.insertBefore(container, document.body.firstChild);
+
+      // Load existing content
+      docRef.get()
+        .then(doc => {
+          if (doc.exists) {
+            textarea.value = doc.data().text || "";
+            status.style.color = "green";
+            status.textContent = "Content loaded successfully.";
+          } else {
+            textarea.value = "";
+            status.style.color = "gray";
+            status.textContent = "No content found yet.";
+          }
+        })
+        .catch(error => {
+          status.style.color = "red";
+          status.textContent = "Error loading content: " + error.message;
+        });
+
+      saveBtn.onclick = () => {
+        const newText = textarea.value.trim();
+        if (!newText) {
+          status.style.color = "red";
+          status.textContent = "Content cannot be empty!";
+          return;
+        }
+        docRef.set({ text: newText })
+          .then(() => {
+            status.style.color = "green";
+            status.textContent = "Content saved successfully!";
+          })
+          .catch(error => {
+            status.style.color = "red";
+            status.textContent = "Error saving content: " + error.message;
+          });
+      };
+
+    } else {
+      alert("Wrong passkey. Editing not allowed.");
+    }
+  })();
+</script>
