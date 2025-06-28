@@ -467,7 +467,24 @@ header {
   <img class="fade-in-left" src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/viber_image_2025-01-18_10-09-19-705.jpg?raw=true" alt="Fade In Image">
 </body>
 </html>
-   <h3>Welcome to Paragraph Academy – Your Path to IELTS & PTE Success </h3>     
+  <h3 class="fade-in-left">Welcome to Paragraph Academy – Your Path to IELTS & PTE Success</h3>
+
+<style>
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: fadeInLeft 1s ease forwards;
+  animation-delay: 1s;
+}
+
+@keyframes fadeInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+</style>
+    
         </a>
         </div>
 
