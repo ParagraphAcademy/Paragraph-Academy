@@ -601,9 +601,8 @@ header {
   <title>Scroll Fade Out Image</title>
   <style>
     body {
-      height: 2000px; /* So we can scroll */
+      height: 2000px; /* So you can scroll */
       margin: 0;
-      padding: 0;
     }
 
     .fade-on-scroll {
@@ -617,7 +616,7 @@ header {
 </head>
 <body>
 
-  <img class="fade-on-scroll" src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/viber_image_2025-01-18_10-09-34-162.png?raw=true" alt="Scroll Fade">
+  <img class="fade-on-scroll" src="https://raw.githubusercontent.com/ParagraphAcademy/Paragraph-Academy/main/viber_image_2025-01-18_10-09-34-162.png" alt="Scroll Fade">
 
   <script>
     const image = document.querySelector('.fade-on-scroll');
@@ -625,7 +624,7 @@ header {
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
       const fadeStart = 0;
-      const fadeEnd = 400; // Change to control how fast it fades
+      const fadeEnd = 400;
 
       let opacity = 1;
 
