@@ -598,25 +598,26 @@ header {
   <title>Scroll Fade Out Image</title>
   <style>
     body {
-      height: 2000px; /* So we can scroll */
+      height: 2000px; /* to make scroll work */
       margin: 0;
+      padding: 0;
     }
 
     .fade-on-scroll {
       width: 100%;
-      max-height: 400px;
+      height: 400px;
       object-fit: cover;
       position: sticky;
       top: 0;
       z-index: 10;
-      transition: opacity 0.1s ease-out;
+      transition: opacity 0.2s ease-out;
     }
   </style>
 </head>
 <body>
 
-  <!-- Example placeholder image -->
-  <img class="fade-on-scroll" src="https://images.unsplash.com/photo-1606788075761-5b57e2f86b2d?auto=format&fit=crop&w=1400&q=80" alt="Scroll Fade">
+  <!-- This is a real image that will show up -->
+  <img class="fade-on-scroll" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=80" alt="Scroll Fade">
 
   <script>
     const image = document.querySelector('.fade-on-scroll');
@@ -624,7 +625,7 @@ header {
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
       const fadeStart = 0;
-      const fadeEnd = 400;
+      const fadeEnd = 400; // pixels to fully fade
 
       let opacity = 1;
 
@@ -642,6 +643,7 @@ header {
 
 </body>
 </html>
+
     <section class="container">
         <h2 class="header" style="color: #ff0000;">Embark on your mission.</h2>
         <p class="sub-header" style="color: #ff0000;">
