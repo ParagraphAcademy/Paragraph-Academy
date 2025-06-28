@@ -597,64 +597,7 @@ header {
 
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Left to Right Fade In</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 3000px;
-      background: #f0f0f0;
-    }
-
-    .image-container {
-      height: 600px;
-      width: 100%;
-      max-width: 900px;
-      margin: 300px auto; /* place image in middle of scroll zone */
-      overflow: hidden;
-    }
-
-    .image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-      opacity: 0;
-      transform: translateX(-100%);
-      transition: opacity 1s ease-out, transform 1s ease-out;
-    }
-
-    .image-container.visible img {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  </style>
-</head>
-<body>
-
-  <div class="image-container" id="fadeImageContainer">
-    <img src="https://raw.githubusercontent.com/ParagraphAcademy/Paragraph-Academy/main/viber_image_2025-01-18_10-09-34-162.png" alt="Your Image"/>
-  </div>
-
-<script>
-  const container = document.getElementById('fadeImageContainer');
-
-  window.addEventListener('scroll', () => {
-    const rect = container.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    if (rect.top < windowHeight * 0.9) {
-      container.classList.add('visible');
-    }
-  });
-</script>
-
-</body>
-</html>
+<img src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/viber_image_2025-01-18_10-09-34-162.png?raw=true">
 
     <section class="container">
         <h2 class="header" style="color: #ff0000;">Embark on your mission.</h2>
