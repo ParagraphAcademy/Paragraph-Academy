@@ -594,7 +594,56 @@ header {
 
     
 
-<img src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/viber_image_2025-01-18_10-09-34-162.png?raw=true">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scroll Fade Out Image</title>
+  <style>
+    body {
+      height: 2000px; /* So we can scroll */
+      margin: 0;
+      padding: 0;
+    }
+
+    .fade-on-scroll {
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      transition: opacity 0.1s ease-out;
+    }
+  </style>
+</head>
+<body>
+
+  <img class="fade-on-scroll" src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/viber_image_2025-01-18_10-09-34-162.png?raw=true" alt="Scroll Fade">
+
+  <script>
+    const image = document.querySelector('.fade-on-scroll');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const fadeStart = 0;
+      const fadeEnd = 400; // Change to control how fast it fades
+
+      let opacity = 1;
+
+      if (scrollY <= fadeStart) {
+        opacity = 1;
+      } else if (scrollY >= fadeEnd) {
+        opacity = 0;
+      } else {
+        opacity = 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart);
+      }
+
+      image.style.opacity = opacity;
+    });
+  </script>
+
+</body>
+</html>
+
     <section class="container">
         <h2 class="header" style="color: #ff0000;">Embark on your mission.</h2>
         <p class="sub-header" style="color: #ff0000;">
