@@ -594,49 +594,54 @@ header {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Fade In on Scroll - Your Image</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 3000px; /* enough scroll space */
-      background: #f0f0f0;
-      font-family: sans-serif;
-    }
+<meta charset="UTF-8" />
+<title>Left to Right Fade In on Scroll</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    height: 3000px; /* scroll space */
+    background: #f0f0f0;
+    font-family: sans-serif;
+  }
 
-    .spacer {
-      height: 100vh;
-      background: #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      color: #333;
-    }
+  .spacer {
+    height: 100vh;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #333;
+  }
 
-    .image-container {
-      height: 600px;
-      overflow: hidden;
-      opacity: 0;
-      transition: opacity 1s ease-out;
-    }
+  .image-container {
+    height: 600px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    /* Start clipped fully to left (0% visible) */
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1s ease-out;
+  }
 
-    .image-container.visible {
-      opacity: 1;
-    }
+  .image-container.visible {
+    /* Reveal entire image */
+    clip-path: inset(0 0 0 0);
+  }
 
-    .image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-  </style>
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+</style>
 </head>
 <body>
 
-  <div class="spacer">Scroll down to see the image fade in ↓</div>
+  <div class="spacer">Scroll down to see image reveal from left to right ↓</div>
 
   <div class="image-container" id="fadeImageContainer">
     <img src="https://raw.githubusercontent.com/ParagraphAcademy/Paragraph-Academy/main/viber_image_2025-01-18_10-09-34-162.png" alt="Your Image" />
@@ -644,19 +649,18 @@ header {
 
   <div class="spacer"></div>
 
-  <script>
-    const imageContainer = document.getElementById('fadeImageContainer');
+<script>
+  const imageContainer = document.getElementById('fadeImageContainer');
 
-    window.addEventListener('scroll', () => {
-      const rect = imageContainer.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
+  window.addEventListener('scroll', () => {
+    const rect = imageContainer.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
 
-      if (rect.top < windowHeight * 0.9) {
-        // Add visible class to trigger fade-in
-        imageContainer.classList.add('visible');
-      }
-    });
-  </script>
+    if (rect.top < windowHeight * 0.9) {
+      imageContainer.classList.add('visible');
+    }
+  });
+</script>
 
 </body>
 </html>
