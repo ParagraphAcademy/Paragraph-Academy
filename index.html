@@ -472,6 +472,28 @@ header {
   transform: translateX(-50px);
   animation: fadeInLeft 1s ease forwards;
   animation-delay: 1s;
+
+  width: 180px;       /* Saano size */
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+}
+
+@keyframes fadeInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+</style>
+
+<style>
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: fadeInLeft 1s ease forwards;
+  animation-delay: 1s;
   width: 300px; /* adjust as needed */
   height: auto; /* keeps aspect ratio */
   display: block;
