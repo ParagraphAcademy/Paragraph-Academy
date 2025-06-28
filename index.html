@@ -539,65 +539,8 @@ header {
         <img src="">
     </div>
 </header>
- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Fade In On Scroll</title>
-  <style>
-    body {
-      background: white;
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-    }
-
-    .spacer {
-      height: 120vh; /* so you can scroll down to see effect */
-    }
-
-    .fade-in-left {
-      opacity: 0;
-      transform: translateX(-100px);
-      transition: all 1s ease-out;
-    }
-
-    .fade-in-left.show {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    img {
-      display: block;
-      max-width: 90%;
-      margin: 0 auto;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="spacer"></div> <!-- just to create space for scrolling -->
-
-  <img class="fade-in-left" src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/0=ipufyre49789iokl.jpg?raw=true" width="600">
-
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
-
-    document.querySelectorAll('.fade-in-left').forEach(el => {
-      observer.observe(el);
-    });
-  </script>
-
-</body>
-</html>
+ <img src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/0=ipufyre49789iokl.jpg?raw=true">
+ 
 
  
     <section class="container">
