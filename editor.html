@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Editable without IDs</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-</head>
-<body>
-
-    <!DOCTYPE html>
+ <!DOCTYPE html>
     <html lang="en">
     
     <head>
@@ -978,28 +969,3 @@
              
         </script>
     </body>
-
-<button id="saveBtn" style="display:none; position: fixed; bottom: 20px; right: 20px; padding: 10px;">Save</button>
-
-<script>
-  window.addEventListener("DOMContentLoaded", () => {
-    // Select all h1 and p elements (customize selectors as needed)
-    const editableElements = document.querySelectorAll("h1, p");
-
-    editableElements.forEach(el => {
-      el.contentEditable = "true";
-      el.style.outline = "1px dashed #666"; // show editable visually
-    });
-
-    const saveBtn = document.getElementById("saveBtn");
-    saveBtn.style.display = "inline-block";
-
-    saveBtn.onclick = () => {
-      // Just demo alert for now
-      alert("You can save content here.");
-    };
-  });
-</script>
-
-</body>
-</html>
