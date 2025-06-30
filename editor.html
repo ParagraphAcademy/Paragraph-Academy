@@ -980,6 +980,7 @@
         </script>
     </body>
 
+
 <script>
   const firebaseConfig = {
     apiKey: "AIzaSyBn61cQIkprqN_1jZoxu5kBOpbk0Qv5tlM",
@@ -1002,6 +1003,8 @@
       const data = doc.data();
       elements.forEach((el, i) => {
         if (data[i]) el.innerHTML = data[i];
+        // ❌ DO NOT make editable
+        el.removeAttribute("contenteditable"); // 🔒 lock it down
       });
     }
   });
