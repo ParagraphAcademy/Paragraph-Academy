@@ -980,8 +980,6 @@
              
         </script>
     </body>
-
-
 <script>
   const firebaseConfig = {
     apiKey: "AIzaSyBn61cQIkprqN_1jZoxu5kBOpbk0Qv5tlM",
@@ -999,12 +997,15 @@
 
   const elements = document.querySelectorAll("h1, h2, p, div");
 
-  // Load saved content from Firebase (read-only)
   docRef.get().then(doc => {
     if (doc.exists) {
       const saved = doc.data();
       elements.forEach((el, i) => {
         if (saved[i]) el.innerHTML = saved[i];
+        el.removeAttribute("contenteditable"); // 🧨 just in case
+        Object.defineProperty(el, 'contentEditable', {
+          get: () => "false", set: () => {}, configurable: true
+        });
       });
     }
   });
