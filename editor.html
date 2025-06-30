@@ -999,11 +999,12 @@
 
   const elements = document.querySelectorAll("h1, h2, p, div");
 
+  // Load saved content from Firebase (read-only)
   docRef.get().then(doc => {
     if (doc.exists) {
-      const data = doc.data();
+      const saved = doc.data();
       elements.forEach((el, i) => {
-        if (data[i]) el.innerHTML = data[i];
+        if (saved[i]) el.innerHTML = saved[i];
       });
     }
   });
