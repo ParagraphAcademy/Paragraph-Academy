@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Paragraph Academy – Editor</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <title>Paragraph Academy – Edit Mode</title>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
   <style>
-    .editable {
+    [contenteditable="true"] {
       outline: 1px dashed gray;
       padding: 3px;
     }
@@ -20,8 +19,8 @@
       color: white;
       border: none;
       border-radius: 5px;
-      cursor: pointer;
       z-index: 9999;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -999,11 +998,12 @@
         </script>
     </body>
 
-<!-- 🔘 Save Button -->
+
+<!-- Save Button -->
 <button id="saveBtn">Save</button>
 
 <script>
-  // ✅ Firebase Config
+  // Firebase config
   const firebaseConfig = {
     apiKey: "AIzaSyBn61cQIkprqN_1jZoxu5kBOpbk0Qv5tlM",
     authDomain: "paragraph-academy.firebaseapp.com",
@@ -1014,14 +1014,14 @@
     measurementId: "G-PY98WNNN67"
   };
 
-  // ✅ Initialize Firebase
   if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
-  const docRef = db.collection("siteContent").doc("sampleEditor");
+  const docRef = db.collection("siteContent").doc("autoEditor");
 
-  const elements = document.querySelectorAll(".editable");
+  // Grab all text-like elements (no class/id needed)
+  const elements = document.querySelectorAll("h1, h2, p, div");
 
-  // ✅ Load content from Firebase
+  // Load and apply saved content
   docRef.get().then(doc => {
     if (doc.exists) {
       const saved = doc.data();
@@ -1029,13 +1029,14 @@
         if (saved[i]) el.innerHTML = saved[i];
       });
     }
-    // Make elements editable
+
+    // Make all selected elements editable
     elements.forEach(el => {
       el.contentEditable = "true";
     });
   });
 
-  // ✅ Save content to Firebase
+  // Save button logic
   document.getElementById("saveBtn").addEventListener("click", () => {
     const updated = {};
     elements.forEach((el, i) => {
@@ -1050,4 +1051,3 @@
 
 </body>
 </html>
-
