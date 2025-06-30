@@ -2,12 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Editable without IDs</title>
+  <title>Sample Editor – Paragraph Academy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    [contenteditable="true"] {
+      outline: 1px dashed #999;
+      padding: 4px;
+    }
+    #saveBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
     
     <head>
@@ -979,26 +1001,52 @@
         </script>
     </body>
 
-<button id="saveBtn" style="display:none; position: fixed; bottom: 20px; right: 20px; padding: 10px;">Save</button>
+<button id="saveBtn">Save Changes</button>
 
 <script>
-  window.addEventListener("DOMContentLoaded", () => {
-    // Select all h1 and p elements (customize selectors as needed)
-    const editableElements = document.querySelectorAll("h1, p");
+  // Firebase config (already yours)
+  const firebaseConfig = {
+    apiKey: "AIzaSyBn61cQIkprqN_1jZoxu5kBOpbk0Qv5tlM",
+    authDomain: "paragraph-academy.firebaseapp.com",
+    projectId: "paragraph-academy",
+    storageBucket: "paragraph-academy.appspot.com",
+    messagingSenderId: "5520826036",
+    appId: "1:5520826036:web:b5c60bcf2af0cdcb2901e1",
+    measurementId: "G-PY98WNNN67"
+  };
 
-    editableElements.forEach(el => {
+  if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  const docRef = db.collection("siteContent").doc("sampleEditor");
+
+  const elements = document.querySelectorAll("h1, p");
+
+  // STEP 1: Load saved data
+  docRef.get().then(doc => {
+    if (doc.exists) {
+      const saved = doc.data();
+      elements.forEach((el, i) => {
+        if (saved[i]) el.innerText = saved[i];
+      });
+    }
+
+    // STEP 2: After load, make editable
+    elements.forEach(el => {
       el.contentEditable = "true";
-      el.style.outline = "1px dashed #666"; // show editable visually
+    });
+  });
+
+  // STEP 3: Save button click
+  document.getElementById("saveBtn").onclick = () => {
+    const updated = {};
+    elements.forEach((el, i) => {
+      updated[i] = el.innerText;
     });
 
-    const saveBtn = document.getElementById("saveBtn");
-    saveBtn.style.display = "inline-block";
-
-    saveBtn.onclick = () => {
-      // Just demo alert for now
-      alert("You can save content here.");
-    };
-  });
+    docRef.set(updated)
+      .then(() => alert("✅ Saved successfully!"))
+      .catch(err => alert("❌ Error: " + err.message));
+  };
 </script>
 
 </body>
