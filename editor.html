@@ -2,25 +2,9 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Editor – Paragraph Academy</title>
+  <title>Paragraph Academy</title>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
-  <style>
-    [contenteditable="true"] {
-      outline: 1px dashed gray;
-      padding: 3px;
-    }
-    #saveBtn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 10px 20px;
-      background: green;
-      color: white;
-      border: none;
-      border-radius: 5px;
-    }
-  </style>
 </head>
 <body>
 
@@ -996,8 +980,6 @@
         </script>
     </body>
 
-<button id="saveBtn">Save</button>
-
 <script>
   const firebaseConfig = {
     apiKey: "AIzaSyBn61cQIkprqN_1jZoxu5kBOpbk0Qv5tlM",
@@ -1022,18 +1004,7 @@
         if (data[i]) el.innerHTML = data[i];
       });
     }
-    elements.forEach(el => el.contentEditable = "true");
   });
-
-  document.getElementById("saveBtn").onclick = () => {
-    const content = {};
-    elements.forEach((el, i) => {
-      content[i] = el.innerHTML;
-    });
-    docRef.set(content).then(() => {
-      alert("✅ Saved!");
-    }).catch(err => alert("❌ " + err.message));
-  };
 </script>
 
 </body>
