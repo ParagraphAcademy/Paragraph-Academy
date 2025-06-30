@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Paragraph Academy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 </head>
@@ -1003,8 +1004,6 @@
       const data = doc.data();
       elements.forEach((el, i) => {
         if (data[i]) el.innerHTML = data[i];
-        // ❌ DO NOT make editable
-        el.removeAttribute("contenteditable"); // 🔒 lock it down
       });
     }
   });
