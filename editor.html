@@ -1,11 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Paragraph Academy</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <title>Editor – Paragraph Academy</title>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <style>
+    [contenteditable="true"] {
+      outline: 1px dashed gray;
+      padding: 3px;
+    }
+    #saveBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: green;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
 
@@ -981,8 +996,8 @@
         </script>
     </body>
 
+<button id="saveBtn">Save</button>
 
-<!-- Firebase script to load data -->
 <script>
   const firebaseConfig = {
     apiKey: "AIzaSyBn61cQIkprqN_1jZoxu5kBOpbk0Qv5tlM",
@@ -996,18 +1011,29 @@
 
   if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
-  const docRef = db.collection("siteContent").doc("sampleEditor");
+  const docRef = db.collection("siteContent").doc("livePage");
 
-  const elements = document.querySelectorAll(".editable");
+  const elements = document.querySelectorAll("h1, h2, p, div");
 
   docRef.get().then(doc => {
     if (doc.exists) {
-      const saved = doc.data();
+      const data = doc.data();
       elements.forEach((el, i) => {
-        if (saved[i]) el.innerHTML = saved[i];
+        if (data[i]) el.innerHTML = data[i];
       });
     }
+    elements.forEach(el => el.contentEditable = "true");
   });
+
+  document.getElementById("saveBtn").onclick = () => {
+    const content = {};
+    elements.forEach((el, i) => {
+      content[i] = el.innerHTML;
+    });
+    docRef.set(content).then(() => {
+      alert("✅ Saved!");
+    }).catch(err => alert("❌ " + err.message));
+  };
 </script>
 
 </body>
