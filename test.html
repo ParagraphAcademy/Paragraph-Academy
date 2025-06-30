@@ -969,42 +969,7 @@
         </div>
     
     
-        <script>
-            function scrollToElement(elementSelector, instance = 0) {
-                // Select all elements that match the given selector
-                const elements = document.querySelectorAll(elementSelector);
-                // Check if there are elements matching the selector and if the requested instance exists
-                if (elements.length > instance) {
-                    // Scroll to the specified instance of the element
-                    elements[instance].scrollIntoView({ behavior: 'smooth' });
-                }
-            }
-            
-            const link1 = document.getElementById("link1");
-            const link2 = document.getElementById("link2");
-            const link3 = document.getElementById("link3");
-            
-            link1.addEventListener('click', () => {
-                scrollToElement('.header');
-            });
-            
-            link2.addEventListener('click', () => {
-                // Scroll to the second element with "header" class
-                scrollToElement('.header', 1);
-            });
-            
-            link3.addEventListener('click', () => {
-                scrollToElement('.column');
-            });
-    
-             
-        </script>
-    </body>
-
-<button id="saveBtn">Save Changes</button>
-
-<script>
-  // Firebase config (already yours)
+       <script>
   const firebaseConfig = {
     apiKey: "AIzaSyBn61cQIkprqN_1jZoxu5kBOpbk0Qv5tlM",
     authDomain: "paragraph-academy.firebaseapp.com",
@@ -1019,35 +984,34 @@
   const db = firebase.firestore();
   const docRef = db.collection("siteContent").doc("sampleEditor");
 
-  const elements = document.querySelectorAll("h1, p");
+  const elements = document.querySelectorAll(".editable");
 
-  // STEP 1: Load saved data
   docRef.get().then(doc => {
     if (doc.exists) {
-      const saved = doc.data();
+      const data = doc.data();
       elements.forEach((el, i) => {
-        if (saved[i]) el.innerText = saved[i];
+        if (data[i]) el.innerHTML = data[i];  // preserve formatting
       });
     }
 
-    // STEP 2: After load, make editable
     elements.forEach(el => {
       el.contentEditable = "true";
+      el.style.outline = "1px dashed #888";
     });
   });
 
-  // STEP 3: Save button click
   document.getElementById("saveBtn").onclick = () => {
     const updated = {};
     elements.forEach((el, i) => {
-      updated[i] = el.innerText;
+      updated[i] = el.innerHTML;
     });
 
     docRef.set(updated)
-      .then(() => alert("✅ Saved successfully!"))
-      .catch(err => alert("❌ Error: " + err.message));
+      .then(() => alert("✅ Saved"))
+      .catch(err => alert("❌ " + err.message));
   };
 </script>
+
 
 </body>
 </html>
