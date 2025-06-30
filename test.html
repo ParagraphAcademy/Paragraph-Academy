@@ -2,7 +2,8 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Editor – Paragraph Academy</title>
+  <title>Paragraph Academy – Editor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
   <style>
@@ -15,10 +16,12 @@
       bottom: 20px;
       right: 20px;
       padding: 10px 20px;
-      background: green;
+      background-color: #28a745;
       color: white;
       border: none;
       border-radius: 5px;
+      cursor: pointer;
+      z-index: 9999;
     }
   </style>
 </head>
@@ -996,7 +999,7 @@
         </script>
     </body>
 
-
+<!-- Save Button -->
 <button id="saveBtn">Save</button>
 
 <script>
@@ -1016,25 +1019,31 @@
 
   const elements = document.querySelectorAll("h1, h2, p, div");
 
+  // Load content from Firebase
   docRef.get().then(doc => {
     if (doc.exists) {
-      const data = doc.data();
+      const saved = doc.data();
       elements.forEach((el, i) => {
-        if (data[i]) el.innerHTML = data[i];
+        if (saved[i]) el.innerHTML = saved[i];
       });
     }
-    elements.forEach(el => el.contentEditable = "true");
+    // Make everything editable
+    elements.forEach(el => {
+      el.contentEditable = "true";
+    });
   });
 
-  document.getElementById("saveBtn").onclick = () => {
-    const content = {};
+  // Save content to Firebase
+  document.getElementById("saveBtn").addEventListener("click", () => {
+    const updated = {};
     elements.forEach((el, i) => {
-      content[i] = el.innerHTML;
+      updated[i] = el.innerHTML;
     });
-    docRef.set(content).then(() => {
-      alert("✅ Saved!");
-    }).catch(err => alert("❌ " + err.message));
-  };
+
+    docRef.set(updated)
+      .then(() => alert("✅ Saved successfully!"))
+      .catch(err => alert("❌ Save failed: " + err.message));
+  });
 </script>
 
 </body>
