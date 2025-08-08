@@ -1,892 +1,916 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <style>
+  /* Basic Reset & Global Styles */
+:root {
+  /* Vintage Arty Color Palette */
+  --color-cream: #F5ECE0; /* Lightest background, paper-like */
+  --color-muted-blue: #261b58f6; /* Primary accent, calm blue */
+  --color-dark-blue-green: #336D82; /* Deeper accent, for hover/stronger elements */
+  --color-muted-purple: #693382; /* Secondary accent, rich purple */
+  --color-dark-text: #261b58f6; /* Near black for contrast */
+  --color-light-text: #4a5568; /* Dark grey for body */
+  --color-border: #d1d5db; /* Lighter, softer border */
+  --color-deep-purple-text: #280A3E; /* New color for director's message text */
+
+  /* Mapped to existing variables for consistency */
+  --primary-color: var(--color-muted-blue);
+  --primary-hover-color: var(--color-dark-blue-green);
+  --text-color: var(--color-dark-text);
+  --light-text-color: var(--color-light-text);
+  --background-light: var(--color-cream);
+  --background-dark: #e0e0e0; /* A slightly darker cream/grey */
+  --card-background: #ffffff;
+  --border-color: var(--border-color);
+  --gradient-start: var(--color-cream);
+  --gradient-end: #f0f0e8; /* Subtle gradient for hero */
+
+  /* Dark Mode Variables (adjusted for vintage feel) */
+  --dark-mode-bg: #2c3e50; /* Darker, muted blue-grey */
+  --dark-mode-text: #f5f5f5;
+  --dark-mode-light-text: #a0aec0;
+  --dark-mode-card: #34495e;
+  --dark-mode-border: #4a6572;
+  --dark-mode-gradient-start: #34495e;
+  --dark-mode-gradient-end: #4a6572;
+}
+
+body {
+  font-family: 'Lora', serif; /* Body text: classic, readable serif */
+  margin: 0;
+  padding: 0;
+  line-height: 1.7;
+  color: var(--text-color);
+  background-color: var(--background-light);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  body {
+      color: var(--dark-mode-text);
+      background-color: var(--dark-mode-bg);
+  }
+  .header, .footer {
+      background-color: var(--dark-mode-bg);
+      border-color: var(--dark-mode-border);
+  }
+  .hero-section {
+      background: linear-gradient(to right, var(--dark-mode-gradient-start), var(--dark-mode-gradient-end));
+  }
+  .services-section, .contact-section, .destinations-section {
+      background-color: var(--dark-mode-bg);
+  }
+  .about-section, .directors-message-section {
+      background-color: var(--dark-mode-card);
+  }
+  .service-card, .contact-form, .destination-card {
+      background-color: var(--dark-mode-card);
+      border-color: var(--dark-mode-border);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  }
+  .button.outline {
+      border-color: var(--dark-mode-border);
+      color: var(--dark-mode-text);
+      background-color: transparent;
+  }
+  .button.outline:hover {
+      background-color: var(--dark-mode-border);
+      color: var(--dark-mode-text);
+  }
+  input, textarea {
+      background-color: var(--dark-mode-border);
+      border-color: #6b7280;
+      color: var(--dark-mode-text);
+  }
+  input::placeholder, textarea::placeholder {
+      color: var(--dark-mode-light-text);
+  }
+  .section-description {
+      color: var(--dark-mode-light-text);
+  }
+  .nav a, .footer-nav a {
+      color: var(--dark-mode-light-text);
+  }
+  .nav a:hover, .footer-nav a:hover {
+      color: var(--primary-color);
+  }
+  .logo span {
+      color: var(--dark-mode-text);
+  }
+  .logo .icon {
+      color: var(--primary-color);
+  }
+  .hero-content h1, .hero-content p {
+      color: var(--dark-mode-text);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  }
+  .slider-dots .dot {
+      background-color: rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.5);
+  }
+  .slider-dots .dot.active {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+  }
+  .slider-arrow {
+      background-color: rgba(0,0,0,0.4);
+      color: white;
+  }
+  .slider-arrow:hover {
+      background-color: rgba(0,0,0,0.6);
+  }
+}
+
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-color);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+h1 {
+  font-size: 2.8rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 1.6rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: var(--light-text-color);
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.button.primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.button.primary:hover {
+  background-color: var(--primary-hover-color);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.button.outline {
+  background-color: transparent;
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+.button.outline:hover {
+  background-color: var(--background-dark);
+  color: var(--text-color);
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  vertical-align: middle;
+  flex-shrink: 0;
+  color: var(--primary-color);
+}
+
+/* Header */
+.header {
+  background-color: var(--card-background);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.875rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+}
+
+.header .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  font-size: 1.35rem;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+}
+
+.header .logo .icon {
+  margin-right: 0.6rem;
+  color: var(--color-muted-purple);
+}
+
+.header .nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.header .nav a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--light-text-color);
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.header .nav a:hover {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.header .nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.header .nav a:hover::after {
+  width: 100%;
+}
+
+/* Hero Section with Slider */
+.hero-section {
+  width: 100%;
+  height: 70vh;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--gradient-start);
+}
+
+.slider-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  transform: scale(1.05);
+}
+
+.slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  max-width: 900px;
+  padding: 2rem;
+}
+
+.hero-content h1 {
+  font-size: 3.8rem;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out 0.5s, transform 0.8s ease-out 0.5s;
+}
+
+.hero-content p {
+  font-size: 1.35rem;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out 0.7s, transform 0.8s ease-out 0.7s;
+}
+
+.hero-buttons {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out 0.9s, transform 0.8s ease-out 0.9s;
+}
+
+.slide.active .hero-content h1,
+.slide.active .hero-content p,
+.slide.active .hero-buttons {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-buttons .button {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.75rem;
+  z-index: 3;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.dot.active {
+  background-color: white;
+  transform: scale(1.2);
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.3);
+  color: white;
+  border: none;
+  padding: 0.8rem 0.5rem;
+  cursor: pointer;
+  z-index: 4;
+  font-size: 1.5rem;
+  border-radius: 0.375rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-arrow:hover {
+  background-color: rgba(0,0,0,0.5);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.prev-arrow {
+  left: 1rem;
+}
+
+.next-arrow {
+  right: 1rem;
+}
+
+.slider-arrow .icon {
+  color: white;
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+
+/* Section Descriptions */
+.section-description {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  color: var(--light-text-color);
+  font-size: 1.1rem;
+}
+
+/* Scroll-reveal animations */
+.fade-in-section, .fade-in-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-section.is-visible, .fade-in-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ensure sections have minimum height for observation */
+.services-section,
+.destinations-section,
+.about-section,
+.directors-message-section,
+.contact-section {
+  min-height: 300px; /* Adjust as needed, ensures content is visible for observer */
+}
+
+
+/* Services Section */
+.services-section {
+  width: 100%;
+  padding: 6rem 0;
+  background-color: var(--card-background);
+  text-align: center;
+}
+
+.services-section h2 {
+  margin-bottom: 1.5rem;
+}
+
+.services-grid {
+  display: grid;
+  gap: 2rem;
+  padding-top: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Removed redundant opacity/transform */
+}
+
+.service-card:hover {
+  transform: translateY(-12px) scale(1.02); /* More pronounced lift and slight scale */
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2); /* Stronger shadow */
+}
+
+.service-card .icon {
+  width: 3rem;
+  height: 3rem;
+  color: var(--color-muted-blue);
+  margin-bottom: 1.25rem;
+}
+
+.service-card h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text-color);
+}
+
+.service-card p {
+  font-size: 0.95rem;
+  color: var(--light-text-color);
+  margin-bottom: 0;
+}
+
+/* Study Destinations Section */
+.destinations-section {
+  width: 100%;
+  padding: 6rem 0;
+  background-color: var(--background-dark);
+  text-align: center;
+}
+
+.destinations-section h2 {
+  margin-bottom: 1.5rem;
+}
+
+.destinations-grid {
+  display: grid;
+  gap: 2rem;
+  padding-top: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.destination-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Removed redundant opacity/transform */
+}
+
+.destination-card:hover {
+  transform: translateY(-12px) scale(1.02); /* More pronounced lift and slight scale */
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15); /* Stronger shadow */
+}
+
+.destination-card .destination-icon {
+  width: 6rem;
+  height: 4rem;
+  object-fit: cover;
+  object-position: center;
+  margin-bottom: 1.25rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.destination-card h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text-color);
+}
+
+.destination-card p {
+  font-size: 0.95rem;
+  color: var(--light-text-color);
+  margin-bottom: 0;
+}
+
+
+/* About Section */
+.about-section {
+  width: 100%;
+  padding: 6rem 0;
+  background-color: var(--background-light);
+}
+
+.about-content {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+  line-height: 1.1;
+}
+
+.about-text p {
+  max-width: 600px;
+  color: var(--light-text-color);
+  font-size: 1.1rem;
+}
+
+.about-text .button {
+  align-self: flex-start;
+}
+
+.about-image {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  aspect-ratio: 1.5;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 1rem;
+  overflow: hidden;
+  margin: 0 auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Removed redundant opacity/transform */
+}
+
+/* Director's Message Section */
+.directors-message-section {
+  width: 100%;
+  padding: 6rem 0;
+  background-color: var(--card-background);
+  text-align: center;
+}
+
+.directors-message-section h2 {
+  margin-bottom: 3rem;
+}
+
+.directors-message-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  background-color: var(--background-dark);
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Removed redundant opacity/transform */
+}
+
+.director-image {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: 5px solid var(--color-muted-purple);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.director-text {
+  text-align: center;
+  font-style: italic;
+  color: var(--color-deep-purple-text);
+  font-size: 1.15rem;
+  line-height: 1.8;
+}
+
+.director-text p:last-child {
+  margin-top: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--color-deep-purple-text);
+  font-size: 1.05rem;
+}
+
+/* Contact Section */
+.contact-section {
+  width: 100%;
+  padding: 6rem 0;
+  background-color: var(--background-light);
+  text-align: center;
+}
+
+.contact-section h2 {
+  margin-bottom: 1.5rem;
+}
+
+.contact-form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1.25rem;
+  padding: 2.5rem;
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Removed redundant opacity/transform */
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background-color: var(--background-light);
+  color: var(--text-color);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(95, 153, 174, 0.2), 0 0 0 6px rgba(95, 153, 174, 0.1); /* Enhanced focus glow */
+}
+
+.contact-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.contact-form button {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--card-background);
+  border-top: 1px solid var(--border-color);
+  padding: 2rem 0;
+  text-align: center;
+  margin-top: auto;
+}
+
+.footer .container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.footer p {
+  font-size: 0.85rem;
+  color: var(--light-text-color);
+  margin-bottom: 0;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-nav a {
+  font-size: 0.85rem;
+  color: var(--light-text-color);
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.footer-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.footer-nav a:hover::after {
+  width: 100%;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 640px) { /* sm breakpoint */
+  .header .nav {
+      gap: 2rem;
+  }
+  h1 {
+      font-size: 3.5rem;
+  }
+  h2 {
+      font-size: 2.5rem;
+  }
+  .services-grid, .destinations-grid {
+      grid-template-columns: repeat(2, 1fr);
+  }
+  .footer .container {
+      flex-direction: row;
+      justify-content: space-between;
+  }
+  .footer-nav {
+      margin-left: auto;
+  }
+}
+
+@media (min-width: 768px) { /* md breakpoint */
+  .hero-section {
+      height: 80vh;
+  }
+  .hero-content h1 {
+      font-size: 4.5rem;
+  }
+  .hero-content p {
+      font-size: 1.5rem;
+  }
+  h2 {
+      font-size: 3rem;
+  }
+  .services-section, .about-section, .contact-section, .destinations-section, .directors-message-section {
+      padding: 8rem 0;
+  }
+  .about-content {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+  }
+  .about-text h2 {
+      font-size: 3rem;
+  }
+  .about-text p {
+      font-size: 1.15rem;
+  }
+  .section-description {
+      font-size: 1.15rem;
+  }
+  .directors-message-content {
+      flex-direction: row;
+      text-align: left;
+      gap: 3rem;
+  }
+  .director-image {
+      flex-shrink: 0;
+  }
+  .director-text {
+      text-align: left;
+  }
+}
+
+@media (min-width: 1024px) { /* lg breakpoint */
+  .hero-section {
+      height: 90vh;
+  }
+  .hero-content h1 {
+      font-size: 5.5rem;
+  }
+  .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+  }
+  .destinations-grid {
+      grid-template-columns: repeat(4, 1fr);
+  }
+  .about-text p {
+      font-size: 1.1rem;
+  }
+  .section-description {
+      font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 1280px) { /* xl breakpoint */
+  .hero-section {
+      height: 100vh;
+  }
+  .hero-content h1 {
+      font-size: 6rem;
+  }
+  .about-text p {
+      font-size: 1.25rem;
+  }
+  .section-description {
+      font-size: 1.25rem;
+  }
+}
+
+  </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paragraph Academy - Consultancy</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts for vintage/arty feel -->
+    
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<style>
-    /* Basic Reset & Global Styles */
-:root {
-    /* Vintage Arty Color Palette */
-    --color-cream: #F5ECE0; /* Lightest background, paper-like */
-    --color-muted-blue: #261b58f6; /* Primary accent, calm blue */
-    --color-dark-blue-green: #261b58f6; /* Deeper accent, for hover/stronger elements */
-    --color-muted-purple: #693382; /* Secondary accent, rich purple */
-    --color-dark-text: #261b58f6; /* Near black for contrast */
-    --color-light-text: #4a5568; /* Dark grey for body */
-    --color-border: #d1d5db; /* Lighter, softer border */
-    --color-deep-purple-text: #280A3E; /* New color for director's message text */
-  
-    /* Mapped to existing variables for consistency */
-    --primary-color: var(--color-muted-blue);
-    --primary-hover-color: var(--color-dark-blue-green);
-    --text-color: var(--color-dark-text);
-    --light-text-color: var(--color-light-text);
-    --background-light: var(--color-cream);
-    --background-dark: #e0e0e0; /* A slightly darker cream/grey */
-    --card-background: #ffffff;
-    --border-color: var(--color-border);
-    --gradient-start: var(--color-cream);
-    --gradient-end: #f0f0e8; /* Subtle gradient for hero */
-  
-    /* Dark Mode Variables (adjusted for vintage feel) */
-    --dark-mode-bg: #2c3e50; /* Darker, muted blue-grey */
-    --dark-mode-text: #f5f5f5;
-    --dark-mode-light-text: #a0aec0;
-    --dark-mode-card: #34495e;
-    --dark-mode-border: #4a6572;
-    --dark-mode-gradient-start: #34495e;
-    --dark-mode-gradient-end: #4a6572;
-  }
-  
-  body {
-    font-family: 'Lora', serif; /* Body text: classic, readable serif */
-    margin: 0;
-    padding: 0;
-    line-height: 1.7;
-    color: var(--text-color);
-    background-color: var(--background-light);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  /* Dark Mode */
-  @media (prefers-color-scheme: dark) {
-    body {
-        color: var(--dark-mode-text);
-        background-color: var(--dark-mode-bg);
-    }
-    .header, .footer {
-        background-color: var(--dark-mode-bg);
-        border-color: var(--dark-mode-border);
-    }
-    .hero-section {
-        background: linear-gradient(to right, var(--dark-mode-gradient-start), var(--dark-mode-gradient-end));
-    }
-    .services-section, .contact-section, .destinations-section {
-        background-color: var(--dark-mode-bg);
-    }
-    .about-section, .directors-message-section {
-        background-color: var(--dark-mode-card);
-    }
-    .service-card, .contact-form, .destination-card {
-        background-color: var(--dark-mode-card);
-        border-color: var(--dark-mode-border);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-    }
-    .button.outline {
-        border-color: var(--dark-mode-border);
-        color: var(--dark-mode-text);
-        background-color: transparent;
-    }
-    .button.outline:hover {
-        background-color: var(--dark-mode-border);
-        color: var(--dark-mode-text);
-    }
-    input, textarea {
-        background-color: var(--dark-mode-border);
-        border-color: #6b7280;
-        color: var(--dark-mode-text);
-    }
-    input::placeholder, textarea::placeholder {
-        color: var(--dark-mode-light-text);
-    }
-    .section-description {
-        color: var(--dark-mode-light-text);
-    }
-    .nav a, .footer-nav a {
-        color: var(--dark-mode-light-text);
-    }
-    .nav a:hover, .footer-nav a:hover {
-        color: var(--primary-color);
-    }
-    .logo span {
-        color: var(--dark-mode-text);
-    }
-    .logo .icon {
-        color: var(--primary-color);
-    }
-    .hero-content h1, .hero-content p {
-        color: var(--dark-mode-text);
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-    }
-    .slider-dots .dot {
-        background-color: rgba(255, 255, 255, 0.3);
-        border-color: rgba(255, 255, 255, 0.5);
-    }
-    .slider-dots .dot.active {
-        background-color: var(--primary-color);
-        border-color: var(--primary-color);
-    }
-    .slider-arrow {
-        background-color: rgba(0,0,0,0.4);
-        color: white;
-    }
-    .slider-arrow:hover {
-        background-color: rgba(0,0,0,0.6);
-    }
-    /* Removed dark mode override for director text to keep it purple */
-  }
-  
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-  
-  h1, h2, h3 {
-    font-family: 'Playfair Display', serif;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    line-height: 1.2;
-    color: var(--text-color);
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
-  }
-  
-  h1 {
-    font-size: 2.8rem;
-  }
-  
-  h2 {
-    font-size: 2.2rem;
-  }
-  
-  h3 {
-    font-size: 1.6rem;
-  }
-  
-  p {
-    margin-bottom: 1rem;
-    color: var(--light-text-color);
-  }
-  
-  a {
-    text-decoration: none;
-    color: var(--primary-color);
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  .button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 2rem;
-    border-radius: 0.375rem;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  }
-  
-  .button.primary {
-    background-color: var(--primary-color);
-    color: white;
-  }
-  
-  .button.primary:hover {
-    background-color: var(--primary-hover-color);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  }
-  
-  .button.outline {
-    background-color: transparent;
-    color: var(--text-color);
-    border-color: var(--border-color);
-  }
-  
-  .button.outline:hover {
-    background-color: var(--background-dark);
-    color: var(--text-color);
-    border-color: var(--primary-color);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  }
-  
-  .icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    vertical-align: middle;
-    flex-shrink: 0;
-    color: var(--primary-color);
-  }
-  
-  /* Header */
-  .header {
-    background-color: var(--card-background);
-    border-bottom: 1px solid var(--border-color);
-    padding: 0.875rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  }
-  
-  .header .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 4rem;
-  }
-  
-  .header .logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-color);
-    font-size: 1.35rem;
-    font-weight: 700;
-    font-family: 'Playfair Display', serif;
-  }
-  
-  .header .logo .icon {
-    margin-right: 0.6rem;
-    color: var(--color-muted-purple);
-  }
-  
-  .header .nav {
-    display: flex;
-    gap: 1.5rem;
-  }
-  
-  .header .nav a {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--light-text-color);
-    position: relative;
-    transition: color 0.3s ease;
-  }
-  
-  .header .nav a:hover {
-    text-decoration: none;
-    color: var(--primary-color);
-  }
-  
-  .header .nav a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0;
-    height: 2px;
-    background-color: var(--primary-color);
-    transition: width 0.3s ease;
-  }
-  
-  .header .nav a:hover::after {
-    width: 100%;
-  }
-  
-  /* Hero Section with Slider */
-  .hero-section {
-    width: 100%;
-    height: 70vh;
-    position: relative;
-    overflow: hidden;
-    background-color: var(--gradient-start);
-  }
-  
-  .slider-wrapper {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
-  
-  .slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-    transform: scale(1.05);
-  }
-  
-  .slide.active {
-    opacity: 1;
-    transform: scale(1);
-  }
-  
-  .slide::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 1;
-  }
-  
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    color: white;
-    max-width: 900px;
-    padding: 2rem;
-  }
-  
-  .hero-content h1 {
-    font-size: 3.8rem;
-    line-height: 1.1;
-    margin-bottom: 1rem;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out 0.5s, transform 0.8s ease-out 0.5s;
-  }
-  
-  .hero-content p {
-    font-size: 1.35rem;
-    margin-bottom: 2rem;
-    color: rgba(255, 255, 255, 0.9);
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out 0.7s, transform 0.8s ease-out 0.7s;
-  }
-  
-  .hero-buttons {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out 0.9s, transform 0.8s ease-out 0.9s;
-  }
-  
-  .slide.active .hero-content h1,
-  .slide.active .hero-content p,
-  .slide.active .hero-buttons {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .hero-buttons .button {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  }
-  
-  .slider-dots {
-    position: absolute;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 0.75rem;
-    z-index: 3;
-  }
-  
-  .dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.7);
-  }
-  
-  .dot.active {
-    background-color: white;
-    transform: scale(1.2);
-  }
-  
-  .slider-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.3);
-    color: white;
-    border: none;
-    padding: 0.8rem 0.5rem;
-    cursor: pointer;
-    z-index: 4;
-    font-size: 1.5rem;
-    border-radius: 0.375rem;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .slider-arrow:hover {
-    background-color: rgba(0,0,0,0.5);
-    transform: translateY(-50%) scale(1.05);
-  }
-  
-  .prev-arrow {
-    left: 1rem;
-  }
-  
-  .next-arrow {
-    right: 1rem;
-  }
-  
-  .slider-arrow .icon {
-    color: white;
-    width: 1.8rem;
-    height: 1.8rem;
-  }
-  
-  
-  /* Section Descriptions */
-  .section-description {
-    max-width: 800px;
-    margin: 0 auto 3rem;
-    color: var(--light-text-color);
-    font-size: 1.1rem;
-  }
-  
-  /* Services Section */
-  .services-section {
-    width: 100%;
-    padding: 6rem 0;
-    background-color: var(--card-background);
-    text-align: center;
-  }
-  
-  .services-section h2 {
-    margin-bottom: 1.5rem;
-  }
-  
-  .services-grid {
-    display: grid;
-    gap: 2rem;
-    padding-top: 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  
-  .service-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 2rem;
-    background-color: var(--card-background);
-    border: 1px solid var(--border-color);
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  }
-  
-  .service-card .icon {
-    width: 3rem;
-    height: 3rem;
-    color: var(--color-muted-blue);
-    margin-bottom: 1.25rem;
-  }
-  
-  .service-card h3 {
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-    color: var(--text-color);
-  }
-  
-  .service-card p {
-    font-size: 0.95rem;
-    color: var(--light-text-color);
-    margin-bottom: 0;
-  }
-  
-  /* Study Destinations Section */
-  .destinations-section {
-    width: 100%;
-    padding: 6rem 0;
-    background-color: var(--background-dark);
-    text-align: center;
-  }
-  
-  .destinations-section h2 {
-    margin-bottom: 1.5rem;
-  }
-  
-  .destinations-grid {
-    display: grid;
-    gap: 2rem;
-    padding-top: 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  
-  .destination-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 2rem;
-    background-color: var(--card-background);
-    border: 1px solid var(--border-color);
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .destination-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  }
-  
-  .destination-card .destination-icon {
-    width: 6rem;
-    height: 4rem;
-    object-fit: cover;
-    object-position: center;
-    margin-bottom: 1.25rem;
-    border-radius: 0.25rem;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
-  
-  .destination-card h3 {
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-    color: var(--text-color);
-  }
-  
-  .destination-card p {
-    font-size: 0.95rem;
-    color: var(--light-text-color);
-    margin-bottom: 0;
-  }
-  
-  
-  /* About Section */
-  .about-section {
-    width: 100%;
-    padding: 6rem 0;
-    background-color: var(--background-light);
-  }
-  
-  .about-content {
-    display: grid;
-    gap: 3rem;
-    align-items: center;
-  }
-  
-  .about-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.5rem;
-  }
-  
-  .about-text h2 {
-    font-size: 2.5rem;
-    line-height: 1.1;
-  }
-  
-  .about-text p {
-    max-width: 600px;
-    color: var(--light-text-color);
-    font-size: 1.1rem;
-  }
-  
-  .about-text .button {
-    align-self: flex-start;
-  }
-  
-  .about-image {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    aspect-ratio: 1.5;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 1rem;
-    overflow: hidden;
-    margin: 0 auto;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  }
-  
-  /* Director's Message Section */
-  .directors-message-section {
-    width: 100%;
-    padding: 6rem 0;
-    background-color: var(--card-background);
-    text-align: center;
-  }
-  
-  .directors-message-section h2 {
-    margin-bottom: 3rem;
-  }
-  
-  .directors-message-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2.5rem;
-    background-color: var(--background-dark);
-    border-radius: 1rem;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  }
-  
-  .director-image {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center;
-    border: 5px solid var(--color-muted-purple);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  }
-  
-  .director-text {
-    text-align: center;
-    font-style: italic;
-    color: var(--color-deep-purple-text); /* Applied new color here */
-    font-size: 1.15rem;
-    line-height: 1.8;
-  }
-  
-  .director-text p:last-child {
-    margin-top: 1.5rem;
-    font-style: normal;
-    font-weight: 600;
-    color: var(--color-deep-purple-text); /* Changed signature color to deep purple */
-    font-size: 1.05rem;
-  }
-  
-  /* Contact Section */
-  .contact-section {
-    width: 100%;
-    padding: 6rem 0;
-    background-color: var(--background-light);
-    text-align: center;
-  }
-  
-  .contact-section h2 {
-    margin-bottom: 1.5rem;
-  }
-  
-  .contact-form {
-    max-width: 500px;
-    margin: 0 auto;
-    display: grid;
-    gap: 1.25rem;
-    padding: 2.5rem;
-    background-color: var(--card-background);
-    border: 1px solid var(--border-color);
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  }
-  
-  .contact-form input,
-  .contact-form textarea {
-    width: 100%;
-    padding: 0.85rem 1.1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 0.375rem;
-    font-size: 1rem;
-    box-sizing: border-box;
-    background-color: var(--background-light);
-    color: var(--text-color);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .contact-form input:focus,
-  .contact-form textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(95, 153, 174, 0.2);
-  }
-  
-  .contact-form textarea {
-    min-height: 140px;
-    resize: vertical;
-  }
-  
-  .contact-form button {
-    width: 100%;
-    margin-top: 1rem;
-  }
-  
-  /* Footer */
-  .footer {
-    background-color: var(--card-background);
-    border-top: 1px solid var(--border-color);
-    padding: 2rem 0;
-    text-align: center;
-    margin-top: auto;
-  }
-  
-  .footer .container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-  }
-  
-  .footer p {
-    font-size: 0.85rem;
-    color: var(--light-text-color);
-    margin-bottom: 0;
-  }
-  
-  .footer-nav {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .footer-nav a {
-    font-size: 0.85rem;
-    color: var(--light-text-color);
-    position: relative;
-    transition: color 0.3s ease;
-  }
-  
-  .footer-nav a:hover {
-    text-decoration: none;
-    color: var(--primary-color);
-  }
-  
-  .footer-nav a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0;
-    height: 1px;
-    background-color: var(--primary-color);
-    transition: width 0.3s ease;
-  }
-  
-  .footer-nav a:hover::after {
-    width: 100%;
-  }
-  
-  /* Responsive Adjustments */
-  @media (min-width: 640px) { /* sm breakpoint */
-    .header .nav {
-        gap: 2rem;
-    }
-    h1 {
-        font-size: 3.5rem;
-    }
-    h2 {
-        font-size: 2.5rem;
-    }
-    .services-grid, .destinations-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .footer .container {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-    .footer-nav {
-        margin-left: auto;
-    }
-  }
-  
-  @media (min-width: 768px) { /* md breakpoint */
-    .hero-section {
-        height: 80vh;
-    }
-    .hero-content h1 {
-        font-size: 4.5rem;
-    }
-    .hero-content p {
-        font-size: 1.5rem;
-    }
-    h2 {
-        font-size: 3rem;
-    }
-    .services-section, .about-section, .contact-section, .destinations-section, .directors-message-section {
-        padding: 8rem 0;
-    }
-    .about-content {
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-    }
-    .about-text h2 {
-        font-size: 3rem;
-    }
-    .about-text p {
-        font-size: 1.15rem;
-    }
-    .section-description {
-        font-size: 1.15rem;
-    }
-    .directors-message-content {
-        flex-direction: row;
-        text-align: left;
-        gap: 3rem;
-    }
-    .director-image {
-        flex-shrink: 0;
-    }
-    .director-text {
-        text-align: left;
-    }
-  }
-  
-  @media (min-width: 1024px) { /* lg breakpoint */
-    .hero-section {
-        height: 90vh;
-    }
-    .hero-content h1 {
-        font-size: 5.5rem;
-    }
-    .services-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2.5rem;
-    }
-    .destinations-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-    .about-text p {
-        font-size: 1.1rem;
-    }
-    .section-description {
-        font-size: 1.1rem;
-    }
-  }
-  
-  @media (min-width: 1280px) { /* xl breakpoint */
-    .hero-section {
-        height: 100vh;
-    }
-    .hero-content h1 {
-        font-size: 6rem;
-    }
-    .about-text p {
-        font-size: 1.25rem;
-    }
-    .section-description {
-        font-size: 1.25rem;
-    }
-  }
-  
-</style>
 <body>
     <header class="header">
         <div class="container">
@@ -907,10 +931,9 @@
     </header>
 
     <main>
-        <!-- Hero Section with Slider -->
         <section id="home" class="hero-section slider-container">
             <div class="slider-wrapper">
-                <div class="slide active" style="background-image: url('/placeholder.svg?height=800&width=1600');">
+                <div class="slide active" style="background-image: url('c:\Users\Admin\Desktop\brrrrr.jpg');">
                     <div class="container hero-content">
                         <h1>Unlock Your Potential with Paragraph Academy</h1>
                         <p>Expert consultancy services to guide your business and personal growth to success.</p>
@@ -920,7 +943,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="slide" style="background-image: url('/placeholder.svg?height=800&width=1600');">
+                <div class="slide" style="background-image: url('/images/brrrrr.png');">
                     <div class="container hero-content">
                         <h1>Your Global Education Journey Starts Here</h1>
                         <p>Discover unparalleled opportunities to study in top universities worldwide.</p>
@@ -930,7 +953,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="slide" style="background-image: url('/placeholder.svg?height=800&width=1600');">
+                <div class="slide" style="background-image: url('/images/hero-slide-3.png');">
                     <div class="container hero-content">
                         <h1>Crafting Your Success Story</h1>
                         <p>Personalized guidance and strategic insights for every step of your career.</p>
@@ -954,38 +977,38 @@
             </div>
         </section>
 
-        <!-- Services Section -->
-        <section id="services" class="services-section">
+     
+        <section id="services" class="services-section fade-in-section">
             <div class="container">
                 <h2>Our Core Services</h2>
                 <p class="section-description">We offer a range of tailored consultancy services to meet your unique needs.</p>
                 <div class="services-grid">
-                    <div class="service-card">
+                    <div class="service-card fade-in-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1.3.5 2.5 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/><path d="M7 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 0 8c0 1.3.5 2.5 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/><path d="M17 19c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 8 13c0 1.3.5 2.5 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/><path d="M9 19c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 2 13c0 1.3.5 2.5 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/></svg>
                         <h3>Strategic Planning</h3>
                         <p>Develop clear roadmaps for sustainable growth and market leadership.</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card fade-in-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                         <h3>Leadership Development</h3>
                         <p>Empower your team with effective leadership skills and foster innovation.</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card fade-in-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
                         <h3>Operational Efficiency</h3>
                         <p>Streamline processes, reduce costs, and boost overall productivity.</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card fade-in-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.93 1.93 0 0 1-2.06 0L2 7"/></svg>
                         <h3>Digital Transformation</h3>
                         <p>Navigate the digital landscape with confidence and embrace new technologies.</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card fade-in-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1.3.5 2.5 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/><path d="M7 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 0 8c0 1.3.5 2.5 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/><path d="M17 19c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 8 13c0 1.3.5 2.5 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/><path d="M9 19c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 2 13c0 1.3.5 2.5 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/></svg>
                         <h3>Market Research</h3>
                         <p>Gain deep insights into your market and identify new opportunities.</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card fade-in-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                         <h3>Talent Management</h3>
                         <p>Attract, develop, and retain top talent for a competitive edge.</p>
@@ -994,28 +1017,28 @@
             </div>
         </section>
 
-        <!-- Study Destinations Section -->
-        <section id="destinations" class="destinations-section">
+      
+        <section id="destinations" class="destinations-section fade-in-section">
             <div class="container">
                 <h2>Study Destinations</h2>
                 <p class="section-description">Explore world-class education opportunities in top global destinations.</p>
                 <div class="destinations-grid">
-                    <div class="destination-card">
+                    <div class="destination-card fade-in-item">
                         <img src="/placeholder.svg?height=100&width=150" alt="USA Flag" class="destination-icon">
                         <h3>Study in USA</h3>
                         <p>Access leading universities and diverse academic programs.</p>
                     </div>
-                    <div class="destination-card">
+                    <div class="destination-card fade-in-item">
                         <img src="/placeholder.svg?height=100&width=150" alt="Canada Flag" class="destination-icon">
                         <h3>Study in Canada</h3>
                         <p>Experience a multicultural environment and high-quality education.</p>
                     </div>
-                    <div class="destination-card">
+                    <div class="destination-card fade-in-item">
                         <img src="/placeholder.svg?height=100&width=150" alt="Australia Flag" class="destination-icon">
                         <h3>Study in Australia</h3>
                         <p>Benefit from innovative research and a vibrant student life.</p>
                     </div>
-                    <div class="destination-card">
+                    <div class="destination-card fade-in-item">
                         <img src="/placeholder.svg?height=100&width=150" alt="UK Flag" class="destination-icon">
                         <h3>Study in UK</h3>
                         <p>Immerse yourself in rich history and prestigious academic institutions.</p>
@@ -1024,25 +1047,25 @@
             </div>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="about-section">
+      
+        <section id="about" class="about-section fade-in-section">
             <div class="container">
                 <div class="about-content">
-                    <div class="about-text">
+                    <div class="about-text fade-in-item">
                         <h2>About Paragraph Academy</h2>
                         <p>At Paragraph Academy, we believe in the power of clear vision and strategic execution. Our mission is to empower individuals and organizations with the knowledge, tools, and guidance needed to achieve their highest potential. With a team of seasoned experts, we provide practical, results-driven solutions tailored to the complexities of today's dynamic world.</p>
                         <a href="#contact" class="button outline">Learn More <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></a>
                     </div>
-                    <img src="/placeholder.svg?height=400&width=600" alt="About Us" class="about-image">
+                    <img src="/placeholder.svg?height=400&width=600" alt="About Us" class="about-image fade-in-item">
                 </div>
             </div>
         </section>
 
-        <!-- Director's Message Section 1 -->
-        <section id="directors-message-1" class="directors-message-section">
+      
+        <section id="directors-message-1" class="directors-message-section fade-in-section">
             <div class="container">
                 <h2>A Message from Our Director</h2>
-                <div class="directors-message-content">
+                <div class="directors-message-content fade-in-item">
                     <img src="/placeholder.svg?height=300&width=300" alt="Director's Photo" class="director-image">
                     <div class="director-text">
                         <p>"Welcome to Paragraph Academy! Our journey began with a simple yet profound belief: that every individual and organization holds immense untapped potential. We are dedicated to providing not just advice, but actionable strategies and unwavering support to help you navigate challenges and seize opportunities. Our team is passionate about fostering growth, innovation, and sustainable success. We look forward to partnering with you on your path to excellence."</p>
@@ -1052,11 +1075,11 @@
             </div>
         </section>
 
-        <!-- Director's Message Section 2 -->
-        <section id="directors-message-2" class="directors-message-section">
+     
+        <section id="directors-message-2" class="directors-message-section fade-in-section">
             <div class="container">
                 <h2>A Vision for the Future</h2>
-                <div class="directors-message-content">
+                <div class="directors-message-content fade-in-item">
                     <img src="/placeholder.svg?height=300&width=300" alt="Co-Director's Photo" class="director-image">
                     <div class="director-text">
                         <p>"At Paragraph Academy, we are constantly looking ahead, anticipating the evolving needs of our clients and the global landscape. Our commitment extends beyond immediate solutions; we aim to build lasting capabilities and foster a mindset of continuous improvement. We envision a future where every client is equipped to thrive, innovate, and lead in their respective fields. Join us as we shape tomorrow, together."</p>
@@ -1066,12 +1089,12 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section">
+      
+        <section id="contact" class="contact-section fade-in-section">
             <div class="container">
                 <h2>Get in Touch</h2>
                 <p class="section-description">Have questions or ready to start your journey? Contact us today.</p>
-                <form class="contact-form">
+                <form class="contact-form fade-in-item">
                     <input type="text" id="name" name="name" placeholder="Your Name" required>
                     <input type="email" id="email" name="email" placeholder="Your Email" required>
                     <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
@@ -1097,145 +1120,208 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-        
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-        
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        
-            // Set current year in footer
-            const currentYearSpan = document.getElementById('current-year');
-            if (currentYearSpan) {
-                currentYearSpan.textContent = new Date().getFullYear();
-            }
-        
-            // Basic form submission (for demonstration, no actual backend)
-            const contactForm = document.querySelector('.contact-form');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    alert('Thank you for your message! We will get back to you soon.');
-                    contactForm.reset(); // Clear the form
-                });
-            }
-        
-            // Hero Slider Logic
-            const slides = document.querySelectorAll('.slide');
-            const dotsContainer = document.querySelector('.slider-dots');
-            const dots = document.querySelectorAll('.dot');
-            const prevArrow = document.querySelector('.prev-arrow');
-            const nextArrow = document.querySelector('.next-arrow');
-            let currentSlide = 0;
-            let slideInterval;
-            const intervalTime = 6000; // 6 seconds for auto-play
-        
-            function showSlide(index) {
-                // Reset all slides and dots
-                slides.forEach(slide => {
-                    slide.classList.remove('active');
-                    // Reset content animations
-                    const content = slide.querySelector('.hero-content');
-                    if (content) {
-                        content.querySelector('h1').style.opacity = '0';
-                        content.querySelector('h1').style.transform = 'translateY(20px)';
-                        content.querySelector('p').style.opacity = '0';
-                        content.querySelector('p').style.transform = 'translateY(20px)';
-                        content.querySelector('.hero-buttons').style.opacity = '0';
-                        content.querySelector('.hero-buttons').style.transform = 'translateY(20px)';
-                    }
-                });
-                dots.forEach(dot => dot.classList.remove('active'));
-        
-                // Determine the new slide index
-                if (index >= slides.length) {
-                    currentSlide = 0;
-                } else if (index < 0) {
-                    currentSlide = slides.length - 1;
-                } else {
-                    currentSlide = index;
-                }
-        
-                // Activate the new slide and dot
-                slides[currentSlide].classList.add('active');
-                dots[currentSlide].classList.add('active');
-        
-                // Trigger content animations for the active slide
-                const activeContent = slides[currentSlide].querySelector('.hero-content');
-                if (activeContent) {
-                    // Use a small timeout to ensure CSS transitions re-trigger
-                    setTimeout(() => {
-                        activeContent.querySelector('h1').style.opacity = '1';
-                        activeContent.querySelector('h1').style.transform = 'translateY(0)';
-                        activeContent.querySelector('p').style.opacity = '1';
-                        activeContent.querySelector('p').style.transform = 'translateY(0)';
-                        activeContent.querySelector('.hero-buttons').style.opacity = '1';
-                        activeContent.querySelector('.hero-buttons').style.transform = 'translateY(0)';
-                    }, 50); // Small delay
-                }
-            }
-        
-            function nextSlide() {
-                showSlide(currentSlide + 1);
-            }
-        
-            function prevSlide() {
-                showSlide(currentSlide - 1);
-            }
-        
-            function startSlider() {
-                slideInterval = setInterval(nextSlide, intervalTime);
-            }
-        
-            function pauseSlider() {
-                clearInterval(slideInterval);
-            }
-        
-            // Event listeners for dots
-            dotsContainer.addEventListener('click', (e) => {
-                if (e.target.classList.contains('dot')) {
-                    const slideIndex = parseInt(e.target.dataset.slide);
-                    showSlide(slideIndex);
-                    pauseSlider();
-                    startSlider();
-                }
-            });
-        
-            // Event listeners for arrows
-            prevArrow.addEventListener('click', () => {
-                prevSlide();
-                pauseSlider();
-                startSlider();
-            });
-        
-            nextArrow.addEventListener('click', () => {
-                nextSlide();
-                pauseSlider();
-                startSlider();
-            });
-        
-            // Pause/Play on hover
-            const heroSection = document.querySelector('.hero-section');
-            if (heroSection) {
-                heroSection.addEventListener('mouseenter', pauseSlider);
-                heroSection.addEventListener('mouseleave', startSlider);
-            }
-        
-            // Initialize slider
-            showSlide(0);
-            startSlider();
-        });
-        
-    </script>
+      document.addEventListener('DOMContentLoaded', () => {
+  // Smooth scrolling for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+
+          if (targetElement) {
+              targetElement.scrollIntoView({
+                  behavior: 'smooth'
+              });
+          }
+      });
+  });
+
+  // Set current year in footer
+  const currentYearSpan = document.getElementById('current-year');
+  if (currentYearSpan) {
+      currentYearSpan.textContent = new Date().getFullYear();
+  }
+
+  // Basic form submission (for demonstration, no actual backend)
+  const contactForm = document.querySelector('.contact-form');
+  if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Thank you for your message! We will get back to you soon.');
+          contactForm.reset(); // Clear the form
+      });
+  }
+
+  // Hero Slider Logic
+  const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.querySelector('.slider-dots');
+  const dots = document.querySelectorAll('.dot');
+  const prevArrow = document.querySelector('.prev-arrow');
+  const nextArrow = document.querySelector('.next-arrow');
+  let currentSlide = 0;
+  let slideInterval;
+  const intervalTime = 6000; // 6 seconds for auto-play
+
+  function showSlide(index) {
+      // Reset all slides and dots
+      slides.forEach(slide => {
+          slide.classList.remove('active');
+          // Reset content animations
+          const content = slide.querySelector('.hero-content');
+          if (content) {
+              content.querySelector('h1').style.opacity = '0';
+              content.querySelector('h1').style.transform = 'translateY(20px)';
+              content.querySelector('p').style.opacity = '0';
+              content.querySelector('p').style.transform = 'translateY(20px)';
+              content.querySelector('.hero-buttons').style.opacity = '0';
+              content.querySelector('.hero-buttons').style.transform = 'translateY(20px)';
+          }
+      });
+      dots.forEach(dot => dot.classList.remove('active'));
+
+      // Determine the new slide index
+      if (index >= slides.length) {
+          currentSlide = 0;
+      } else if (index < 0) {
+          currentSlide = slides.length - 1;
+      } else {
+          currentSlide = index;
+      }
+
+      // Activate the new slide and dot
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+
+      // Trigger content animations for the active slide
+      const activeContent = slides[currentSlide].querySelector('.hero-content');
+      if (activeContent) {
+          // Use a small timeout to ensure CSS transitions re-trigger
+          setTimeout(() => {
+              activeContent.querySelector('h1').style.opacity = '1';
+              activeContent.querySelector('h1').style.transform = 'translateY(0)';
+              activeContent.querySelector('p').style.opacity = '1';
+              activeContent.querySelector('p').style.transform = 'translateY(0)';
+              activeContent.querySelector('.hero-buttons').style.opacity = '1';
+              activeContent.querySelector('.hero-buttons').style.transform = 'translateY(0)';
+          }, 50); // Small delay
+      }
+  }
+
+  function nextSlide() {
+      showSlide(currentSlide + 1);
+  }
+
+  function prevSlide() {
+      showSlide(currentSlide - 1);
+  }
+
+  function startSlider() {
+      slideInterval = setInterval(nextSlide, intervalTime);
+  }
+
+  function pauseSlider() {
+      clearInterval(slideInterval);
+  }
+
+  // Event listeners for dots
+  dotsContainer.addEventListener('click', (e) => {
+      if (e.target.classList.contains('dot')) {
+          const slideIndex = parseInt(e.target.dataset.slide);
+          showSlide(slideIndex);
+          pauseSlider();
+          startSlider();
+      }
+  });
+
+  // Event listeners for arrows
+  prevArrow.addEventListener('click', () => {
+      prevSlide();
+      pauseSlider();
+      startSlider();
+  });
+
+  nextArrow.addEventListener('click', () => {
+      nextSlide();
+      pauseSlider();
+      startSlider();
+  });
+
+  // Pause/Play on hover
+  const heroSection = document.querySelector('.hero-section');
+  if (heroSection) {
+      heroSection.addEventListener('mouseenter', pauseSlider);
+      heroSection.addEventListener('mouseleave', startSlider);
+  }
+
+  // Initialize slider
+  showSlide(0);
+  startSlider();
+
+  // Intersection Observer for scroll-reveal animations
+  const fadeInSections = document.querySelectorAll('.fade-in-section');
+  // Select parent elements that contain fade-in-items, or are fade-in-items themselves
+  const itemParentsToObserve = document.querySelectorAll('.services-grid, .destinations-grid, .about-content, .directors-message-content, .contact-form');
+
+  const observerOptions = {
+      root: null, // viewport
+      rootMargin: '0px',
+      threshold: 0.1 // Trigger when 10% of the element is visible
+  };
+
+  console.log('Scroll-reveal: Initializing observers.');
+  console.log('Scroll-reveal: Found sections with .fade-in-section:', fadeInSections.length);
+  console.log('Scroll-reveal: Found item parents to observe:', itemParentsToObserve.length);
+
+
+  const sectionObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+          if (entry.isIntersecting) {
+              console.log('Scroll-reveal: Section intersecting:', entry.target.id || entry.target.className);
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target); // Stop observing once visible
+          } else {
+              // console.log('Scroll-reveal: Section not intersecting:', entry.target.id || entry.target.className);
+          }
+      });
+  }, observerOptions);
+
+  const itemObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+          if (entry.isIntersecting) {
+              console.log('Scroll-reveal: Item parent intersecting:', entry.target.className);
+              
+              // If the parent itself is a fade-in-item, make it visible immediately
+              if (entry.target.classList.contains('fade-in-item')) {
+                  entry.target.classList.add('is-visible');
+                  console.log('Scroll-reveal: Parent item visible:', entry.target.className);
+              }
+
+              // Then, check for children that are fade-in-items for staggered animation
+              const items = entry.target.querySelectorAll('.fade-in-item');
+              items.forEach((item, index) => {
+                  // Ensure we don't re-add if the parent was already handled and is the same element
+                  if (item !== entry.target) {
+                      setTimeout(() => {
+                          item.classList.add('is-visible');
+                          console.log('Scroll-reveal: Child item visible:', item.className);
+                      }, index * 100); // 100ms delay between items
+                  }
+              });
+              observer.unobserve(entry.target); // Stop observing once visible
+          }
+      });
+  }, observerOptions);
+
+  fadeInSections.forEach(section => {
+      sectionObserver.observe(section);
+  });
+
+  itemParentsToObserve.forEach(parent => {
+      itemObserver.observe(parent);
+  });
+});
+ 
+  </script>
 </body>
 </html>
