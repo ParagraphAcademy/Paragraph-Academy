@@ -911,7 +911,110 @@ a:hover {
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body>     <header class="header">
+<body>    
+  <div id="chat-container" style="position:fixed; bottom:20px; right:20px; font-family: Arial, sans-serif; z-index:9999;">
+
+  <!-- Chat box hidden initially -->
+  <div id="chat-box" style="display:none; width:300px; height:400px; background:#6a0dad; border-radius:10px; box-shadow:0 8px 16px rgba(106,13,173,0.5); display:flex; flex-direction:column; overflow:hidden; margin-bottom:10px; color:white;">
+
+    <div id="chat-header" style="background:#4b0082; padding:12px; font-weight:bold; font-size:18px; display:flex; justify-content:space-between; align-items:center;">
+      Chat
+      <button id="close-chat" aria-label="Close chat" style="background:transparent; border:none; color:white; font-size:20px; cursor:pointer;">&times;</button>
+    </div>
+
+    <div id="messages" style="flex:1; padding:10px; overflow-y:auto;"></div>
+
+    <form id="input-area" style="display:flex; border-top:1px solid #521a9b;">
+      <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off" style="flex:1; padding:10px; border:none; outline:none; font-size:16px; border-radius:0 0 0 10px;" />
+      <button type="submit" id="send-btn" style="background:#a060e9; border:none; color:white; padding:0 20px; cursor:pointer; font-weight:bold; border-radius:0 0 10px 0; transition:background 0.3s ease;">Send</button>
+    </form>
+
+  </div>
+
+  <!-- Chat toggle button -->
+  <button id="chat-toggle" aria-label="Open chat" style="background:purple; border:none; border-radius:50%; width:60px; height:60px; cursor:pointer; color:white; font-size:28px; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 8px rgba(128,0,128,0.4); transition:background 0.3s ease;">&#128172;</button>
+
+</div>
+
+<script>
+  const chatToggle = document.getElementById('chat-toggle');
+  const chatBox = document.getElementById('chat-box');
+  const closeChatBtn = document.getElementById('close-chat');
+  const messagesDiv = document.getElementById('messages');
+  const chatInput = document.getElementById('chat-input');
+  const inputForm = document.getElementById('input-area');
+
+  // Hover effect for toggle button inline style workaround
+  chatToggle.addEventListener('mouseenter', () => {
+    chatToggle.style.background = 'rebeccapurple';
+  });
+  chatToggle.addEventListener('mouseleave', () => {
+    chatToggle.style.background = 'purple';
+  });
+
+  // Show chat box on toggle button click
+  chatToggle.addEventListener('click', () => {
+    chatBox.style.display = 'flex';
+    chatToggle.style.display = 'none';
+    chatInput.focus();
+    if(messagesDiv.innerHTML.trim() === '') {
+      addBotMessage("Hello! How can I help you today?");
+    }
+  });
+
+  // Close chat box
+  closeChatBtn.addEventListener('click', () => {
+    chatBox.style.display = 'none';
+    chatToggle.style.display = 'flex';
+    messagesDiv.innerHTML = '';
+  });
+
+  // Add message to messages container
+  function addMessage(text, sender) {
+    const msgDiv = document.createElement('div');
+    msgDiv.textContent = text;
+    msgDiv.style.marginBottom = '10px';
+    msgDiv.style.padding = '8px 12px';
+    msgDiv.style.borderRadius = '15px';
+    msgDiv.style.maxWidth = '75%';
+    msgDiv.style.clear = 'both';
+    msgDiv.style.color = sender === 'user' ? '#fff' : '#eee';
+
+    if (sender === 'user') {
+      msgDiv.style.background = '#a060e9';
+      msgDiv.style.alignSelf = 'flex-end';
+    } else {
+      msgDiv.style.background = '#8a2be2';
+      msgDiv.style.alignSelf = 'flex-start';
+    }
+    messagesDiv.appendChild(msgDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }
+
+  function addUserMessage(text) {
+    addMessage(text, 'user');
+  }
+
+  function addBotMessage(text) {
+    addMessage(text, 'bot');
+  }
+
+  // Handle form submit
+  inputForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const text = chatInput.value.trim();
+    if (!text) return;
+    addUserMessage(text);
+    chatInput.value = '';
+    chatInput.focus();
+
+    // Simple bot response simulation (echo with delay)
+    setTimeout(() => {
+      addBotMessage("You said: " + text);
+    }, 600);
+  });
+</script>
+  <header class="header">
         <div class="container">
             <a href="#" class="logo">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
