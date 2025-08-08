@@ -1020,15 +1020,111 @@ a:hover {
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
                 <span>Paragraph Academy</span>
             </a>
-            <nav class="nav">
-                <a href="#home">Home</a>
-                <a href="#services">Services</a>
-                <a href="#destinations">Study Destinations</a>
-                <a href="#about">About</a>
-                <a href="#directors-message-1">Director's Message 1</a>
-                <a href="#directors-message-2">Director's Message 2</a>
-                <a href="#contact">Contact</a>
-            </nav>
+            <nav class="nav" style="
+  background: purple; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 10px 20px; 
+  color: white; 
+  position: relative;
+  flex-wrap: wrap;
+">
+
+  <div id="navLinks" style="
+    display: flex; 
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-start;
+  ">
+    <a href="#home" style="color:white; text-decoration:none; font-weight:600;">Home</a>
+    <a href="#services" style="color:white; text-decoration:none; font-weight:600;">Services</a>
+    <a href="#destinations" style="color:white; text-decoration:none; font-weight:600;">Study Destinations</a>
+    <a href="#about" style="color:white; text-decoration:none; font-weight:600;">About</a>
+    <a href="#directors-message-1" style="color:white; text-decoration:none; font-weight:600;">Director's Message 1</a>
+    <a href="#directors-message-2" style="color:white; text-decoration:none; font-weight:600;">Director's Message 2</a>
+    <a href="#contact" style="color:white; text-decoration:none; font-weight:600;">Contact</a>
+  </div>
+
+  <div id="hamburger" tabindex="0" role="button" aria-label="Toggle navigation" style="
+    display: none; 
+    flex-direction: column; 
+    cursor: pointer; 
+    gap: 5px;
+  ">
+    <div style="
+      width: 25px; 
+      height: 3px; 
+      background: white; 
+      border-radius: 2px;
+    "></div>
+    <div style="
+      width: 25px; 
+      height: 3px; 
+      background: white; 
+      border-radius: 2px;
+    "></div>
+    <div style="
+      width: 25px; 
+      height: 3px; 
+      background: white; 
+      border-radius: 2px;
+    "></div>
+  </div>
+
+</nav>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  const nav = document.querySelector('nav.nav');
+
+  function applyResponsive() {
+    if(window.innerWidth <= 600) {
+      hamburger.style.display = 'flex';
+      navLinks.style.display = 'none';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = nav.offsetHeight + 'px';
+      navLinks.style.left = '0';
+      navLinks.style.right = '0';
+      navLinks.style.background = 'purple';
+      navLinks.style.padding = '15px 20px';
+      navLinks.style.gap = '10px';
+      navLinks.style.zIndex = '999';
+      navLinks.style.width = '100%';
+    } else {
+      hamburger.style.display = 'none';
+      navLinks.style.display = 'flex';
+      navLinks.style.flexDirection = 'row';
+      navLinks.style.position = 'static';
+      navLinks.style.width = 'auto';
+      navLinks.style.background = 'transparent';
+      navLinks.style.padding = '0';
+      navLinks.style.gap = '20px';
+    }
+  }
+
+  hamburger.addEventListener('click', () => {
+    if(navLinks.style.display === 'flex') {
+      navLinks.style.display = 'none';
+    } else {
+      navLinks.style.display = 'flex';
+    }
+  });
+
+  hamburger.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      hamburger.click();
+    }
+  });
+
+  window.addEventListener('resize', applyResponsive);
+  window.addEventListener('load', applyResponsive);
+</script>
+
         </div>
     </header>
 
