@@ -380,44 +380,31 @@ scrollBtn.addEventListener('click', () => {
 
 <div style="overflow:hidden; width:100%;">
   <div id="person-slider" style="display:flex; gap:20px; animation: slide 15s linear infinite;">
-    <!-- Original set -->
-    <div class="person">
-      <img src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/covery.jpg?raw=true" alt="person 1" style="width:150px; height:150px; border-radius:10px; object-fit:cover;">
-    </div>
-    <div class="person">
-      <img src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/uniini.jpg?raw=true" alt="person 2" style="width:150px; height:150px; border-radius:10px; object-fit:cover;">
-    </div>
-    <div class="person">
-      <img src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/travel%20and%20stay.jpg?raw=true" alt="person 3" style="width:150px; height:150px; border-radius:10px; object-fit:cover;">
-    </div>
+ <!-- Duplicated for seamless loop -->
+      <div class="person">
+        <img src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/covery.jpg?raw=true" alt="person 1" style="width:150px; height: 70%;">
+      </div>
+      <div class="person">
+        <img src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/uniini.jpg?raw=true" alt="person 2" style="width:150px;border-radius:10px;">
+      </div>
+      <div class="person">
+        <img src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/travel%20and%20stay.jpg?raw=true" alt="person 3" style="width:150px;border-radius:10px;">
+      </div>
 
-    <!-- Duplicate set for seamless loop -->
-    <div class="person">
-      <img src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/covery.jpg?raw=true" alt="person 1" style="width:150px; height:150px; border-radius:10px; object-fit:cover;">
-    </div>
-    <div class="person">
-      <img src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/uniini.jpg?raw=true" alt="person 2" style="width:150px; height:150px; border-radius:10px; object-fit:cover;">
-    </div>
-    <div class="person">
-      <img src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/travel%20and%20stay.jpg?raw=true" alt="person 3" style="width:150px; height:150px; border-radius:10px; object-fit:cover;">
+      <!-- Duplicate set for seamless looping -->
+      <div class="person">
+        <img src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/covery.jpg?raw=true" alt="person 1" style="width:150px;border-radius:10px;">
+      </div>
+      <div class="person">
+        <img src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/uniini.jpg?raw=true" alt="person 2" style="width:150px;border-radius:10px;">
+      </div>
+      <div class="person">
+        <img src="https://github.com/ParagraphAcademy/Paragraph-Academy/blob/main/travel%20and%20stay.jpg?raw=true" alt="person 3" style="width:150px;border-radius:10px;">
+      </div>
+
     </div>
   </div>
 </div>
-
-<style>
-@keyframes slide {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-</style>
-
-
-<style>
-@keyframes slide {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-</style>
 
           <div class="badge">5 Years of Experience<br><small style="font-weight:600;color:#6c58a0">Operating in 15 Countries</small></div>
           <div class="badge right">100+ Institution Partners<br><small style="font-weight:600;color:#6c58a0">200+ Courses</small></div>
