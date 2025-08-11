@@ -658,11 +658,12 @@ scrollBtn.addEventListener('click', () => {
 </head>
 <body>
 
-<div class="quick-contact" id="quickContact">
+<div class="quick-contact" id="quickContact" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
   <button class="quick-contact-toggle" id="toggleBtn" aria-label="Open Contact Panel">
     <i class="fas fa-comment"></i>
   </button>
-  <div class="quick-contact-panel" role="dialog" aria-modal="true" aria-labelledby="contactHeader" tabindex="-1">
+  <div class="quick-contact-panel" role="dialog" aria-modal="true" aria-labelledby="contactHeader" tabindex="-1"
+       style="display: none; position: fixed; bottom: 70px; right: 20px; width: 300px; background: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
     <div class="quick-contact-header">
       <h3 id="contactHeader">Contact Us</h3>
       <button class="quick-contact-close" id="closeBtn" aria-label="Close Contact Panel">
