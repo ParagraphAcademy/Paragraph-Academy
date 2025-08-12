@@ -429,463 +429,368 @@ scrollBtn.addEventListener('click', () => {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Quick Contact Panel with Feedback and Animation</title>
-<!-- Font Awesome CDN for icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-<style>
-  /* Reset and base styles */
-  .quick-contact * {
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  .quick-contact {
-    position: fixed;
-    bottom: 30px;
-    right: 40px;
-    z-index: 9999;
-    width: 320px;
-    max-width: 90vw;
-    font-size: 14px;
-    color: #333;
-  }
-  .quick-contact-toggle {
-    background: linear-gradient(135deg, #5a4de8, #8376f9);
-    border: none;
-    border-radius: 50%;
-    width: 56px;
-    height: 56px;
-    cursor: pointer;
-    color: #fff;
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 6px 15px rgba(90, 77, 232, 0.5);
-    transition: background 0.3s ease;
-  }
-  .quick-contact-toggle:hover {
-    background: linear-gradient(135deg, #8376f9, #5a4de8);
-  }
-  .quick-contact-panel {
-    position: absolute;
-    bottom: 70px;
-    right: 0;
-    width: 320px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-    overflow: hidden;
-    transform: translateY(20px);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.35s ease, transform 0.35s ease;
-  }
-  .quick-contact.open .quick-contact-panel {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
-  .quick-contact-header {
-    background: #5a4de8;
-    color: #fff;
-    padding: 15px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .quick-contact-header h3 {
-    margin: 0;
-    font-weight: 600;
-    font-size: 18px;
-  }
-  .quick-contact-close {
-    background: transparent;
-    border: none;
-    color: #fff;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 4px;
-    line-height: 1;
-    transition: color 0.3s ease;
-  }
-  .quick-contact-close:hover {
-    color: #d1d1ff;
-  }
-  .quick-contact-body {
-    padding: 20px;
-  }
-  .contact-options {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-    gap: 10px;
-  }
-  .contact-option {
-    flex: 1;
-    background: #f7f7ff;
-    border-radius: 8px;
-    padding: 10px 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-weight: 600;
-    color: #5a4de8;
-    cursor: pointer;
-    text-decoration: none;
-    border: 2px solid transparent;
-    transition: background 0.3s ease, border-color 0.3s ease;
-    user-select: none;
-    position: relative;
-  }
-  .contact-option i {
-    font-size: 18px;
-  }
-  .contact-option:hover,
-  .contact-option:focus {
-    background: #5a4de8;
-    color: #fff;
-    border-color: #3c32b7;
-    outline: none;
-  }
-  .quick-message-form {
-    display: none;
-  }
-  .quick-message-form.active {
-    display: block;
-  }
-  .form-group {
-    margin-bottom: 15px;
-  }
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 600;
-    color: #444;
-  }
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1.8px solid #ddd;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: border-color 0.3s ease;
-    resize: vertical;
-    font-family: inherit;
-  }
-  .form-group input:focus,
-  .form-group textarea:focus {
-    border-color: #5a4de8;
-    outline: none;
-  }
-  .btn-primary {
-    background: #5a4de8;
-    color: white;
-    font-weight: 700;
-    border: none;
-    padding: 12px;
-    width: 100%;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .btn-primary:hover,
-  .btn-primary:focus {
-    background: #3c32b7;
-    outline: none;
-  }
-  .form-message {
-    margin-top: 12px;
-    font-size: 14px;
-    font-weight: 600;
-    min-height: 20px;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  .form-message.visible {
-    opacity: 1;
-  }
-  .form-message.success {
-    color: #28a745;
-  }
-  .form-message.error {
-    color: #d93025;
-  }
-  .click-feedback {
-    font-size: 14px;
-    user-select: none;
-    color: #5a4de8;
-    font-weight: 600;
-    min-height: 24px;
-    margin-top: 10px;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  .click-feedback.visible {
-    opacity: 1;
-  }
-  /* Loading spinner in button */
-  .btn-spinner {
-    border: 3px solid #fff;
-    border-top: 3px solid #3c32b7;
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
-    animation: spin 1s linear infinite;
-    margin-left: 8px;
-  }
-  @keyframes spin {
-    0% { transform: rotate(0deg);}
-    100% { transform: rotate(360deg);}
-  }
-  @media (max-width: 400px) {
-    .quick-contact {
-      width: 95vw;
-      right: 2.5vw;
-    }
-    .quick-contact-panel {
-      width: 100%;
-    }
-  }
-    .quick-contact {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  z-index: 2147483647;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Bubble Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.quick-contact-panel {
-  display: none;
-  position: fixed;
-  bottom: 70px; /* above the button */
-  left: 20px;
-  width: 300px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
 
-.quick-contact-panel.open {
-  display: block;
-}
+        .demo-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
 
-</style>
-    
+        /* Contact Bubble Styles */
+        .contact-bubble {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .bubble-button {
+            width: 60px;
+            height: 60px;
+            background: #007bff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 123, 255, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .bubble-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(0, 123, 255, 0.6);
+        }
+
+        .bubble-button.active {
+            background: #dc3545;
+        }
+
+        .contact-panel {
+            position: absolute;
+            bottom: 70px;
+            left: 0;
+            width: 300px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-panel.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .panel-header {
+            background: #007bff;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px 12px 0 0;
+            font-weight: 600;
+        }
+
+        .panel-content {
+            padding: 20px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 10px;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .submit-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #218838;
+        }
+
+        .contact-info {
+            display: none;
+            gap: 15px;
+        }
+
+        .contact-info.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .info-icon {
+            width: 20px;
+            height: 20px;
+            color: #007bff;
+        }
+
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 15px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 480px) {
+            .contact-panel {
+                width: calc(100vw - 40px);
+                max-width: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<div class="quick-contact" id="quickContact">
-  <button class="quick-contact-toggle" id="toggleBtn" aria-label="Open Contact Panel">
-    <i class="fas fa-comment"></i>
-  </button>
-  <div class="quick-contact-panel" role="dialog" aria-modal="true" aria-labelledby="contactHeader" tabindex="-1">
-    <div class="quick-contact-header">
-      <h3 id="contactHeader">Contact Us</h3>
-      <button class="quick-contact-close" id="closeBtn" aria-label="Close Contact Panel">
-        <i class="fas fa-times"></i>
-      </button>
+    <div class="demo-content">
+        <h1>Website Demo</h1>
+        <p>This is a demo page to show the contact bubble in action. The contact bubble is positioned in the bottom left corner and provides an easy way for visitors to get in touch.</p>
+        <br>
+        <p>Scroll down or interact with the page to see how the contact bubble stays fixed in position. Click on it to open the contact form or view contact information.</p>
+        <br>
+        <p>The bubble includes both a contact form and quick contact information, making it versatile for different user preferences.</p>
     </div>
-    <div class="quick-contact-body">
-      <div class="contact-options">
-        <a href="tel:+977 9767215151" class="contact-option phone" aria-label="Call Us" id="callBtn">
-          <i class="fas fa-phone"></i>
-          <span>Call Us</span>
-        </a>
-        <a href="outlook:infoparagraph.academy@gmail.com" class="contact-option email" aria-label="Email Us" id="emailBtn">
-          <i class="fas fa-envelope"></i>
-          <span>Email</span>
-        </a>
-        <button class="contact-option message" id="messageToggleBtn" aria-expanded="false" aria-controls="messageForm">
-          <i class="fas fa-comment"></i>
-          <span>Message</span>
+
+    <!-- Contact Bubble -->
+    <div class="contact-bubble">
+        <button class="bubble-button" id="contactToggle" aria-label="Open contact form">
+            💬
         </button>
-      </div>
-      <div class="click-feedback" id="clickFeedback" aria-live="polite" role="status"></div>
-      <div class="quick-message-form" id="messageForm" aria-hidden="true">
-        <form id="quick-contact-form" novalidate>
-          <div class="form-group">
-            <label for="quick-name">Your Name</label>
-            <input type="text" id="quick-name" required />
-          </div>
-          <div class="form-group">
-            <label for="quick-email">Email Address</label>
-            <input type="email" id="quick-email" required />
-          </div>
-          <div class="form-group">
-            <label for="quick-message">Message</label>
-            <textarea id="quick-message" rows="3" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">
-            Send Message
-          </button>
-        </form>
-        <div class="form-message" id="formMessage" role="alert" aria-live="assertive"></div>
-      </div>
+        
+        <div class="contact-panel" id="contactPanel">
+            <div class="panel-header">
+                Get in Touch
+            </div>
+            <div class="panel-content">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="form">Contact Form</button>
+                    <button class="tab-btn" data-tab="info">Quick Contact</button>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+                
+                <div class="contact-info" id="contactInfo">
+                    <div class="info-item">
+                        <span class="info-icon">📧</span>
+                        <span>hello@example.com</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📞</span>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📍</span>
+                        <span>123 Business St, City, State</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">🕒</span>
+                        <span>Mon-Fri: 9AM-6PM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
+    <script>
+        // Contact bubble functionality
+        const contactToggle = document.getElementById('contactToggle');
+        const contactPanel = document.getElementById('contactPanel');
+        const contactForm = document.getElementById('contactForm');
+        const contactInfo = document.getElementById('contactInfo');
+        const tabButtons = document.querySelectorAll('.tab-btn');
 
+        // Toggle contact panel
+        contactToggle.addEventListener('click', function() {
+            const isActive = contactPanel.classList.contains('active');
+            
+            if (isActive) {
+                contactPanel.classList.remove('active');
+                contactToggle.classList.remove('active');
+                contactToggle.innerHTML = '💬';
+                contactToggle.setAttribute('aria-label', 'Open contact form');
+            } else {
+                contactPanel.classList.add('active');
+                contactToggle.classList.add('active');
+                contactToggle.innerHTML = '✕';
+                contactToggle.setAttribute('aria-label', 'Close contact form');
+            }
+        });
 
-<script>
-  const quickContact = document.getElementById('quickContact');
-  const toggleBtn = document.getElementById('toggleBtn');
-  const closeBtn = document.getElementById('closeBtn');
-  const messageToggleBtn = document.getElementById('messageToggleBtn');
-  const messageForm = document.getElementById('messageForm');
-  const form = document.getElementById('quick-contact-form');
-  const formMessage = document.getElementById('formMessage');
-  const clickFeedback = document.getElementById('clickFeedback');
-  const callBtn = document.getElementById('callBtn');
-  const emailBtn = document.getElementById('emailBtn');
+        // Tab switching functionality
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const targetTab = this.getAttribute('data-tab');
+                
+                // Update active tab button
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show/hide content
+                if (targetTab === 'form') {
+                    contactForm.style.display = 'flex';
+                    contactInfo.classList.remove('active');
+                } else {
+                    contactForm.style.display = 'none';
+                    contactInfo.classList.add('active');
+                }
+            });
+        });
 
-  // Utility functions for feedback
-  function showClickFeedback(text) {
-    clickFeedback.textContent = text;
-    clickFeedback.classList.add('visible');
-    setTimeout(() => {
-      clickFeedback.classList.remove('visible');
-    }, 3000);
-  }
-  function showFormMessage(text, isError = false) {
-    formMessage.textContent = text;
-    formMessage.classList.add('visible');
-    if (isError) {
-      formMessage.classList.remove('success');
-      formMessage.classList.add('error');
-    } else {
-      formMessage.classList.remove('error');
-      formMessage.classList.add('success');
-    }
-  }
-  function clearFormMessage() {
-    formMessage.textContent = '';
-    formMessage.classList.remove('visible', 'error', 'success');
-  }
+        // Form submission
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            // Simulate form submission
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert(`Thank you ${name}! Your message has been sent. We'll get back to you at ${email} soon.`);
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                
+                // Close the panel after successful submission
+                contactPanel.classList.remove('active');
+                contactToggle.classList.remove('active');
+                contactToggle.innerHTML = '💬';
+                contactToggle.setAttribute('aria-label', 'Open contact form');
+            }, 1500);
+        });
 
-  // Toggle contact panel open/close
-  toggleBtn.addEventListener('click', () => {
-    quickContact.classList.toggle('open');
-    if (!quickContact.classList.contains('open')) {
-      hideMessageForm();
-      clearFormMessage();
-      clearClickFeedback();
-      form.reset();
-    }
-  });
+        // Close panel when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.contact-bubble')) {
+                contactPanel.classList.remove('active');
+                contactToggle.classList.remove('active');
+                contactToggle.innerHTML = '💬';
+                contactToggle.setAttribute('aria-label', 'Open contact form');
+            }
+        });
 
-  // Close panel with close button
-  closeBtn.addEventListener('click', () => {
-    quickContact.classList.remove('open');
-    hideMessageForm();
-    clearFormMessage();
-    clearClickFeedback();
-    form.reset();
-  });
-
-  // Toggle message form show/hide
-  messageToggleBtn.addEventListener('click', () => {
-    const isActive = messageForm.classList.toggle('active');
-    messageToggleBtn.setAttribute('aria-expanded', isActive);
-    messageForm.setAttribute('aria-hidden', !isActive);
-    showClickFeedback('Message form toggled.');
-  });
-
-  // Show feedback on Call click
-  callBtn.addEventListener('click', () => {
-    showClickFeedback('Dialing +977 9767215151');
-  });
-
-  // Show feedback on Email click
-  emailBtn.addEventListener('click', () => {
-    showClickFeedback('Opening email client to infoparagraph.academy@gmail.com');
-  });
-
-  // Helper to hide message form
-  function hideMessageForm() {
-    messageForm.classList.remove('active');
-    messageToggleBtn.setAttribute('aria-expanded', false);
-    messageForm.setAttribute('aria-hidden', true);
-  }
-  function clearClickFeedback() {
-    clickFeedback.textContent = '';
-    clickFeedback.classList.remove('visible');
-  }
-
-  // Handle form submit with loading spinner
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    clearFormMessage();
-    clearClickFeedback();
-
-    if (!form.checkValidity()) {
-      showFormMessage('Please fill in all required fields correctly.', true);
-      return;
-    }
-
-    const submitBtn = form.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-
-    // Add spinner
-    const spinner = document.createElement('span');
-    spinner.className = 'btn-spinner';
-    submitBtn.appendChild(spinner);
-
-    // Simulate async sending with timeout
-    setTimeout(() => {
-      showFormMessage('Message sent successfully! Thank you.');
-      form.reset();
-      submitBtn.disabled = false;
-      spinner.remove();
-
-      // Hide form and panel after delay
-      setTimeout(() => {
-        hideMessageForm();
-        clearFormMessage();
-        quickContact.classList.remove('open');
-      }, 2500);
-    }, 1800);
-  });
-
-  // Close panel if user clicks outside
-  document.addEventListener('click', (e) => {
-    if (
-      quickContact.classList.contains('open') &&
-      !quickContact.contains(e.target) &&
-      e.target !== toggleBtn
-    ) {
-      quickContact.classList.remove('open');
-      hideMessageForm();
-      clearFormMessage();
-      clearClickFeedback();
-      form.reset();
-    }
-  });
-
-  // Close panel with ESC key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && quickContact.classList.contains('open')) {
-      quickContact.classList.remove('open');
-      hideMessageForm();
-      clearFormMessage();
-      clearClickFeedback();
-      form.reset();
-      toggleBtn.focus();
-    }
-  });
-</script>
-
+        // Keyboard accessibility
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && contactPanel.classList.contains('active')) {
+                contactPanel.classList.remove('active');
+                contactToggle.classList.remove('active');
+                contactToggle.innerHTML = '💬';
+                contactToggle.setAttribute('aria-label', 'Open contact form');
+            }
+        });
+    </script>
 </body>
 </html>
-
-                   
+                  
 
 
 
