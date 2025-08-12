@@ -1,500 +1,452 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Study in the UK - Comprehensive Guide</title>
-<style>
-  /* Root variables for consistent theming */
-  :root {
-    --primary-color: #4a2c82;
-    --secondary-color: #2f60b5;
-    --accent-color: #ffd966;
-    --background-gradient-start: #4a2c82;
-    --background-gradient-end: #2f60b5;
-    --text-color: #ffffff;
-    --section-bg: rgba(255 255 255 / 0.07);
-    --font-family-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --font-family-serif: 'Georgia', serif;
-    --max-content-width: 900px;
-    --border-radius: 14px;
-    --transition-speed: 0.3s;
-  }
-
-  /* Reset & base styles */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    font-family: var(--font-family-sans);
-    background: linear-gradient(135deg, var(--background-gradient-start), var(--background-gradient-end));
-    color: var(--text-color);
-    line-height: 1.75;
-    min-height: 100vh;
-  }
-
-  a {
-    color: var(--accent-color);
-    text-decoration: none;
-    transition: color var(--transition-speed);
-  }
-  a:hover {
-    color: #fff;
-    text-decoration: underline;
-  }
-
-  /* Container for page content */
-  .container {
-    max-width: var(--max-content-width);
-    margin: 0 auto;
-    padding: 20px 15px;
-  }
-
-  header {
-    text-align: center;
-    padding: 60px 20px 40px 20px;
-    background: rgba(0 0 0 / 0.3);
-    border-radius: var(--border-radius);
-    margin: 30px 15px 50px 15px;
-  }
-  header h1 {
-    font-size: 3.8rem;
-    margin-bottom: 15px;
-    font-family: var(--font-family-serif);
-    letter-spacing: 2px;
-    color: var(--accent-color);
-  }
-  header p {
-    font-size: 1.3rem;
-    max-width: 600px;
-    margin: 0 auto;
-    font-weight: 500;
-  }
-
-  section {
-    background: var(--section-bg);
-    border-radius: var(--border-radius);
-    padding: 40px 30px;
-    margin-bottom: 40px;
-    box-shadow: 0 0 12px rgb(0 0 0 / 0.2);
-  }
-
-  section h2 {
-    color: var(--accent-color);
-    font-family: var(--font-family-serif);
-    font-size: 2.4rem;
-    margin-bottom: 25px;
-    border-bottom: 3px solid var(--accent-color);
-    padding-bottom: 8px;
-  }
-
-  p {
-    font-size: 1.1rem;
-    margin-bottom: 22px;
-  }
-
-  ul {
-    list-style-type: disc;
-    padding-left: 40px;
-  }
-
-  ul li {
-    margin-bottom: 12px;
-    font-size: 1.1rem;
-  }
-
-  /* Subheading for smaller topics */
-  .subheading {
-    font-size: 1.6rem;
-    margin-top: 35px;
-    margin-bottom: 18px;
-    color: var(--accent-color);
-    font-weight: 600;
-  }
-
-  /* Tables */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-  }
-  table, th, td {
-    border: 1px solid var(--accent-color);
-  }
-  th, td {
-    padding: 10px 15px;
-    text-align: left;
-    font-size: 1.1rem;
-  }
-  th {
-    background-color: rgba(255 217 102 / 0.2);
-  }
-
-  /* Footer */
-  footer {
-    text-align: center;
-    padding: 25px 20px;
-    background: rgba(0 0 0 / 0.3);
-    font-size: 0.95rem;
-    color: var(--accent-color);
-    font-family: var(--font-family-serif);
-    letter-spacing: 1px;
-  }
-
-  /* Responsive */
-  @media (max-width: 600px) {
-    header h1 {
-      font-size: 2.5rem;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Study in the UK — Your Complete Guide</title>
+  <style>
+    :root{
+      --bg: #f6f9ff;
+      --card: #ffffff;
+      --accent: #0b5ed7; /* deep blue */
+      --accent-2: #183b8a; /* darker blue */
+      --muted: #63718a;
+      --glass: rgba(11,94,215,0.06);
+      --radius: 14px;
+      --maxw: 1100px;
+      --pad: 20px;
+      --shadow: 0 8px 30px rgba(12,35,80,0.06);
+      --mono: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      --heading: 1.9rem;
     }
-    section {
-      padding: 25px 15px;
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:var(--mono);background:linear-gradient(180deg,var(--bg),#eef4ff);color:#0f1724}
+    a{color:var(--accent);text-decoration:none}
+    .container{max-width:var(--maxw);margin:0 auto;padding:calc(var(--pad) * 1.2)}
+
+    /* Header */
+    header.site-header{position:sticky;top:12px;background:transparent;padding:10px 0;z-index:40}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;box-shadow:var(--shadow)}
+    nav.main-nav{margin-left:auto}
+    .nav-list{display:flex;gap:18px;align-items:center}
+    .nav-list a{font-weight:600;color:var(--accent-2)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:36px 0}
+    .hero-card{background:var(--card);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+    .hero h1{font-size:2.4rem;margin:0 0 8px;color:var(--accent-2)}
+    .hero p.lead{color:var(--muted);line-height:1.6}
+    .cta-row{display:flex;gap:12px;margin-top:18px}
+    .btn{background:var(--accent);color:#fff;padding:10px 16px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    .btn.ghost{background:transparent;color:var(--accent-2);border:2px solid rgba(11,94,215,0.12)}
+
+    /* Quick facts */
+    .quick-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .fact{background:var(--glass);padding:12px;border-radius:10px;text-align:center}
+    .fact h3{margin:6px 0 0}
+
+    /* Content sections */
+    section{margin:28px 0}
+    .card{background:var(--card);padding:22px;border-radius:12px;box-shadow:var(--shadow)}
+    h2.section-title{font-size:1.4rem;color:var(--accent-2);margin:0 0 12px}
+    p{color:#122432;line-height:1.65}
+
+    /* University grid */
+    .uni-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .uni{padding:16px;border-radius:12px;background:linear-gradient(180deg,rgba(11,94,215,0.03),#fff);border:1px solid rgba(11,94,215,0.04)}
+    .uni h4{margin:6px 0}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(24,59,138,0.08);font-weight:700;color:var(--accent-2)}
+
+    /* Lists and two-col layout */
+    .two-col{display:grid;grid-template-columns:1fr 380px;gap:20px;align-items:start}
+    ul{padding-left:18px}
+    li{margin:8px 0}
+
+    /* Accordion FAQ */
+    .faq .q{border-bottom:1px dashed rgba(10,30,70,0.04);padding:12px 0;cursor:pointer}
+    .faq .a{display:none;padding:8px 0;color:var(--muted)}
+    .q.active + .a{display:block}
+
+    /* Footer */
+    footer{padding:30px 0;color:var(--muted);font-size:0.92rem;text-align:center}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .two-col{grid-template-columns:1fr}
+      .uni-grid{grid-template-columns:repeat(2,1fr)}
+      .nav-list{display:none}
     }
-    p, ul li {
-      font-size: 1rem;
+    @media (max-width:560px){
+      .uni-grid{grid-template-columns:1fr}
+      .hero h1{font-size:1.6rem}
     }
-  }
-</style>
+  </style>
 </head>
 <body>
+  <header class="site-header">
+    <div class="container" style="display:flex;align-items:center;gap:14px">
+      <div class="brand">
+        <div class="logo">UK</div>
+        <div>
+          <div style="font-weight:800;color:var(--accent-2)">Study in the UK</div>
+          <div style="font-size:12px;color:var(--muted)">A comprehensive student guide — courses, fees, visas, life</div>
+        </div>
+      </div>
 
-<header>
-  <h1>Study in the United Kingdom</h1>
-  <p>Your ultimate guide to higher education, living, and opportunities in the UK as an international student.</p>
-</header>
-
-<div class="container">
-
-  <section id="introduction">
-    <h2>Introduction to Studying in the UK</h2>
-    <p>The United Kingdom is a world-renowned education destination offering students a combination of rich history, cultural diversity, and high academic standards. Students from all over the globe come to the UK to experience its vibrant student life, innovative research opportunities, and the chance to earn globally recognized qualifications.</p>
-    <p>Whether you want to study humanities, science, engineering, business, or creative arts, the UK has programs tailored to your interests. Plus, its relatively short degree durations mean you can enter the job market faster.</p>
-  </section>
-
-  <section id="education-system">
-    <h2>The UK Education System</h2>
-    <p>The UK education system is structured into various levels:</p>
-    <ul>
-      <li><strong>Undergraduate Degrees:</strong> Usually 3 years (4 in Scotland) leading to Bachelor of Arts (BA), Bachelor of Science (BSc), or other bachelor's degrees.</li>
-      <li><strong>Postgraduate Degrees:</strong> Master's degrees generally last 1 year full-time; PhDs typically last 3-4 years.</li>
-      <li><strong>Foundation Courses:</strong> One-year preparatory courses for international students who need additional training before starting undergraduate studies.</li>
-      <li><strong>Diplomas and Certificates:</strong> Shorter courses focused on specific professional skills.</li>
-    </ul>
-    <p>Universities in the UK are categorized as:</p>
-    <ul>
-      <li><strong>Ancient Universities:</strong> Established before 1600 (e.g., Oxford, Cambridge, St Andrews)</li>
-      <li><strong>Red Brick Universities:</strong> Founded in the 19th and early 20th centuries (e.g., Manchester, Birmingham)</li>
-      <li><strong>Modern Universities:</strong> Gained university status after 1992.</li>
-    </ul>
-  </section>
-
-  <section id="top-universities">
-    <h2>Top Universities in the UK</h2>
-    <p>The UK boasts many universities consistently ranked among the top worldwide. Here are some of the most prestigious and popular:</p>
-    <table>
-      <thead>
-        <tr>
-          <th>University</th>
-          <th>Location</th>
-          <th>Known For</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>University of Oxford</td>
-          <td>Oxford</td>
-          <td>Humanities, Sciences, Law, Medicine</td>
-        </tr>
-        <tr>
-          <td>University of Cambridge</td>
-          <td>Cambridge</td>
-          <td>Engineering, Mathematics, Business</td>
-        </tr>
-        <tr>
-          <td>Imperial College London</td>
-          <td>London</td>
-          <td>Science, Technology, Medicine</td>
-        </tr>
-        <tr>
-          <td>London School of Economics (LSE)</td>
-          <td>London</td>
-          <td>Economics, Politics, Social Sciences</td>
-        </tr>
-        <tr>
-          <td>University College London (UCL)</td>
-          <td>London</td>
-          <td>Medicine, Arts, Engineering</td>
-        </tr>
-        <tr>
-          <td>University of Edinburgh</td>
-          <td>Edinburgh</td>
-          <td>Medicine, Engineering, Humanities</td>
-        </tr>
-      </tbody>
-    </table>
-    <p>These universities offer extensive resources, strong alumni networks, and excellent international reputations.</p>
-  </section>
-
-  <section id="popular-courses">
-    <h2>Popular Courses for International Students</h2>
-    <p>The UK offers a broad range of subjects suitable for various career paths. Some of the most popular fields include:</p>
-    <ul>
-      <li><strong>Business and Management:</strong> MBA, Finance, Marketing</li>
-      <li><strong>Engineering and Technology:</strong> Civil, Mechanical, Electrical, Software Engineering</li>
-      <li><strong>Medicine and Healthcare:</strong> Medicine, Nursing, Pharmacy</li>
-      <li><strong>Law and International Relations:</strong> LLB, International Law, Diplomacy</li>
-      <li><strong>Arts, Design, and Creative Media:</strong> Fine Arts, Graphic Design, Film Studies</li>
-      <li><strong>Computer Science and IT:</strong> Artificial Intelligence, Cybersecurity, Data Science</li>
-      <li><strong>Social Sciences and Humanities:</strong> Psychology, Sociology, History</li>
-    </ul>
-    <p>Many courses combine theoretical knowledge with practical experience through internships and research projects.</p>
-  </section>
-
-  <section id="admission-requirements">
-    <h2>Admission Requirements</h2>
-    <p>While specific requirements vary by university and course, general admission criteria include:</p>
-    <ul>
-      <li><strong>Academic Qualifications:</strong> Completion of secondary education for undergraduate courses or a bachelor's degree for postgraduate courses.</li>
-      <li><strong>English Language Proficiency:</strong> Scores from IELTS (usually 6.0–7.0), TOEFL, or PTE.</li>
-      <li><strong>Personal Statement:</strong> A written essay explaining your motivation and goals.</li>
-      <li><strong>References:</strong> Academic or professional recommendation letters.</li>
-      <li><strong>Portfolio:</strong> Required for creative courses such as art and design.</li>
-      <li><strong>Interviews or Tests:</strong> Some programs require interviews or entrance exams.</li>
-    </ul>
-  </section>
-
-  <section id="application-process">
-    <h2>Application Process</h2>
-    <p>The application process depends on your level of study:</p>
-    <div>
-      <h3 class="subheading">Undergraduate Applications</h3>
-      <p>Use the <a href="https://www.ucas.com/" target="_blank" rel="noopener">UCAS</a> platform to apply for up to 5 courses/universities at once. Key steps:</p>
-      <ul>
-        <li>Create an account on UCAS</li>
-        <li>Complete your personal details</li>
-        <li>Write your personal statement</li>
-        <li>Get references</li>
-        <li>Submit predicted grades or transcripts</li>
-        <li>Pay the application fee</li>
-      </ul>
-      <p>Application deadlines vary, but typically fall in January for most courses starting the following autumn.</p>
+      <nav class="main-nav">
+        <div class="nav-list">
+          <a href="#top-unis">Top Unis</a>
+          <a href="#courses">Courses</a>
+          <a href="#visa">Visa</a>
+          <a href="#living">Living</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </nav>
     </div>
+  </header>
 
-    <div>
-      <h3 class="subheading">Postgraduate Applications</h3>
-      <p>Most universities accept direct applications via their websites for master's and PhD programs:</p>
-      <ul>
-        <li>Research courses and supervisors</li>
-        <li>Prepare academic transcripts and CV</li>
-        <li>Write a research proposal (for PhD)</li>
-        <li>Submit references</li>
-        <li>Provide English test results</li>
-        <li>Meet application deadlines, usually several months before start date</li>
-      </ul>
-    </div>
-  </section>
+  <main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Study in the United Kingdom — opportunities that shape your future</h1>
+        <p class="lead">The UK is home to centuries-old institutions, world-class research, and a vibrant student culture. Whether you want a short master's, a rigorous undergraduate degree, or vocational training — the UK offers a wide range of global pathways.</p>
+        <div class="cta-row">
+          <button class="btn" onclick="document.querySelector('#apply').scrollIntoView({behavior:'smooth'})">Start Application</button>
+          <button class="btn ghost" onclick="document.querySelector('#scholarships').scrollIntoView({behavior:'smooth'})">Find Scholarships</button>
+        </div>
 
-  <section id="student-visa">
-    <h2>Student Visa Process</h2>
-    <p>To study in the UK, international students need a Tier 4 (General) Student Visa, now called the Student Route visa. Key points:</p>
-    <ul>
-      <li>Get an unconditional offer from a licensed Tier 4 sponsor (university)</li>
-      <li>Receive your Confirmation of Acceptance for Studies (CAS) number</li>
-      <li>Proof of funds to support tuition fees and living costs</li>
-      <li>Pass the English language requirement</li>
-      <li>Complete the online visa application form</li>
-      <li>Pay the visa fee and healthcare surcharge</li>
-      <li>Attend a biometric appointment</li>
-      <li>Wait for visa approval (usually 3 weeks)</li>
-    </ul>
-    <p>Check the official UK government website for updated visa rules: <a href="https://www.gov.uk/student-visa" target="_blank" rel="noopener">gov.uk/student-visa</a></p>
-  </section>
+        <div class="quick-facts" style="margin-top:18px">
+          <div class="fact">
+            <div style="font-size:18px;font-weight:800;color:var(--accent-2)">160+</div>
+            <h3>Universities</h3>
+            <div style="font-size:12px;color:var(--muted)">including Russell Group & world-class institutions</div>
+          </div>
+          <div class="fact">
+            <div style="font-size:18px;font-weight:800;color:var(--accent-2)">1 year</div>
+            <h3>Fast Masters</h3>
+            <div style="font-size:12px;color:var(--muted)">Many master's programs finish in 1 year</div>
+          </div>
+          <div class="fact">
+            <div style="font-size:18px;font-weight:800;color:var(--accent-2)">Post-study</div>
+            <h3>Work Visas</h3>
+            <div style="font-size:12px;color:var(--muted)">Graduate routes allow work after study</div>
+          </div>
+        </div>
+      </div>
 
-  <section id="tuition-fees">
-    <h2>Tuition Fees and Costs</h2>
-    <p>The cost of tuition depends on the course and university:</p>
-    <table>
-      <thead>
-        <tr>
-          <th>Level</th>
-          <th>Typical Annual Tuition Fees (GBP)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Undergraduate</td>
-          <td>£10,000 – £25,000</td>
-        </tr>
-        <tr>
-          <td>Postgraduate Taught</td>
-          <td>£11,000 – £32,000</td>
-        </tr>
-        <tr>
-          <td>Postgraduate Research (PhD)</td>
-          <td>£13,000 – £28,000</td>
-        </tr>
-      </tbody>
-    </table>
+      <aside style="width:100%">
+        <div class="card">
+          <h3 style="margin-top:0">Quick checklist</h3>
+          <ul>
+            <li>Choose course & university</li>
+            <li>Check entry requirements (grades, English)</li>
+            <li>Apply via UCAS (UG) or direct for PG</li>
+            <li>Secure finances & scholarships</li>
+            <li>Apply for student visa and accommodation</li>
+          </ul>
 
-    <p>Additional expenses include:</p>
-    <ul>
-      <li>Accommodation</li>
-      <li>Books and study materials</li>
-      <li>Travel and leisure</li>
-      <li>Health insurance (usually included in visa healthcare surcharge)</li>
-    </ul>
-  </section>
+          <div style="margin-top:12px">
+            <strong>Estimated timeline</strong>
+            <p style="margin:6px 0;color:var(--muted)">Application planning should begin 8–12 months before your start date for competitive programs.</p>
+          </div>
+        </div>
 
-  <section id="living-costs">
-    <h2>Living Costs in the UK</h2>
-    <p>Costs vary greatly depending on location and lifestyle:</p>
-    <table>
-      <thead>
-        <tr>
-          <th>Category</th>
-          <th>Estimated Monthly Cost (£)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Rent (shared accommodation)</td>
-          <td>£400 – £700</td>
-        </tr>
-        <tr>
-          <td>Utilities & Internet</td>
-          <td>£60 – £100</td>
-        </tr>
-        <tr>
-          <td>Food & Groceries</td>
-          <td>£150 – £250</td>
-        </tr>
-        <tr>
-          <td>Transportation (bus, metro)</td>
-          <td>£50 – £100</td>
-        </tr>
-        <tr>
-          <td>Miscellaneous & Leisure</td>
-          <td>£100 – £200</td>
-        </tr>
-      </tbody>
-    </table>
+        <div style="height:12px"></div>
+        <div class="card">
+          <h4 style="margin:0 0 8px">Scholarship tip</h4>
+          <p style="color:var(--muted);margin:0">Many universities list scholarships on their pages. Also check government and private scholarships, and departmental awards for international students.</p>
+        </div>
+      </aside>
+    </section>
 
-    <p>Living in London is typically more expensive than other cities like Manchester, Glasgow, or Cardiff.</p>
-  </section>
+    <section id="top-unis">
+      <div class="card">
+        <h2 class="section-title">Top universities & what makes them special</h2>
+        <p style="margin-bottom:12px;color:var(--muted)">Here are representative institutions and core strengths — this list is illustrative, not exhaustive.</p>
 
-  <section id="scholarships">
-    <h2>Scholarships and Financial Support</h2>
-    <p>International students can apply for many scholarships to reduce tuition fees or cover living costs:</p>
-    <ul>
-      <li><strong>Chevening Scholarships:</strong> UK government global scholarships for one-year master’s degrees.</li>
-      <li><strong>Commonwealth Scholarships:</strong> For students from Commonwealth countries pursuing master’s or PhD.</li>
-      <li><strong>GREAT Scholarships:</strong> Offered in partnership with UK universities for selected countries.</li>
-      <li><strong>University-Specific Scholarships:</strong> Many universities offer merit-based or need-based scholarships.</li>
-      <li><strong>Research Grants:</strong> For PhD students and research projects.</li>
-    </ul>
-    <p>Start researching early and prepare your scholarship applications carefully.</p>
-  </section>
+        <div class="uni-grid">
+          <div class="uni">
+            <div class="badge">Russell Group</div>
+            <h4>University of Oxford</h4>
+            <p style="margin:6px 0;color:var(--muted)">History, research excellence, tutorial-based learning.</p>
+            <small>Famous for: humanities, PPE, law, medical sciences.</small>
+          </div>
+          <div class="uni">
+            <div class="badge">Russell Group</div>
+            <h4>University of Cambridge</h4>
+            <p style="margin:6px 0;color:var(--muted)">Strong traditions, college system, high research output.</p>
+            <small>Famous for: natural sciences, engineering, mathematics.</small>
+          </div>
+          <div class="uni">
+            <div class="badge">London</div>
+            <h4>Imperial College London</h4>
+            <p style="margin:6px 0;color:var(--muted)">STEM-focused university with close industry links.</p>
+            <small>Famous for: engineering, medicine, applied sciences.</small>
+          </div>
 
-  <section id="part-time-jobs">
-    <h2>Working While Studying</h2>
-    <p>Student visa holders are usually allowed to work up to 20 hours per week during term time and full-time during holidays.</p>
-    <p>Popular part-time jobs include:</p>
-    <ul>
-      <li>Campus roles: Library assistant, lab helper, student ambassador</li>
-      <li>Retail and hospitality: Barista, cashier, waiter/waitress</li>
-      <li>Internships related to your field</li>
-    </ul>
-    <p>Working part-time helps you gain experience and manage living expenses, but remember to prioritize your studies.</p>
-  </section>
+          <div class="uni">
+            <div class="badge">Comprehensive</div>
+            <h4>University of Edinburgh</h4>
+            <p style="margin:6px 0;color:var(--muted)">Historic campus and strong research culture.</p>
+            <small>Famous for: informatics, arts, life sciences.</small>
+          </div>
+          <div class="uni">
+            <div class="badge">London</div>
+            <h4>UCL (University College London)</h4>
+            <p style="margin:6px 0;color:var(--muted)">Highly interdisciplinary with global partnerships.</p>
+            <small>Famous for: architecture, medicine, social sciences.</small>
+          </div>
+          <div class="uni">
+            <div class="badge">Research</div>
+            <h4>University of Manchester</h4>
+            <p style="margin:6px 0;color:var(--muted)">Large campus, strong industry connections.</p>
+            <small>Famous for: engineering, business, social sciences.</small>
+          </div>
+        </div>
 
-  <section id="student-life">
-    <h2>Student Life and Cultural Adaptation</h2>
-    <p>The UK offers a vibrant student culture with clubs, sports, societies, and events for every interest.</p>
-    <p>Tips for cultural adaptation:</p>
-    <ul>
-      <li>Be open to meeting people from diverse backgrounds</li>
-      <li>Engage in campus activities and events</li>
-      <li>Explore your city’s landmarks and cultural sites</li>
-      <li>Use university support services for wellbeing and academic help</li>
-      <li>Learn to manage your time and finances</li>
-    </ul>
-  </section>
+        <p style="margin-top:14px;color:var(--muted)">Tip: Choose by course strength, teaching style (lecture vs tutorial), location, and budget.</p>
+      </div>
+    </section>
 
-  <section id="popular-cities">
-    <h2>Popular UK Cities for Students</h2>
-    <p>Each city has its own vibe and benefits:</p>
+    <section id="courses">
+      <div class="two-col">
+        <div class="card">
+          <h2 class="section-title">Popular courses & degree structure</h2>
+          <p>The UK offers a wide range of programs: undergraduates (usually 3–4 years), integrated masters (4 years), taught master's (often 1 year), research degrees (MPhil/PhD), and professional qualifications.</p>
 
-    <article>
-      <h3 class="subheading">London</h3>
-      <p>The capital city is home to world-class universities, diverse cultures, and countless opportunities, but it’s also the most expensive city.</p>
-    </article>
+          <h3 style="margin-top:12px">Undergraduate (UG)</h3>
+          <p style="color:var(--muted)">Most bachelor's degrees are 3 years (England, Wales, Northern Ireland) or 4 years (Scotland). Many programs include placements, year-abroad options, or industrial experience.</p>
 
-    <article>
-      <h3 class="subheading">Manchester</h3>
-      <p>Known for its music scene, sports culture, and affordable living, Manchester is a great choice for students seeking a lively but affordable city.</p>
-    </article>
+          <h3 style="margin-top:12px">Postgraduate taught (PGT)</h3>
+          <p style="color:var(--muted)">Taught master's are frequently 1 year long — intensive but time-efficient. Typical qualifications: MSc, MA, LLM, MBA.</p>
 
-    <article>
-      <h3 class="subheading">Edinburgh</h3>
-      <p>Historic and picturesque, Edinburgh offers a mix of old and new with a strong student community and prestigious universities.</p>
-    </article>
+          <h3 style="margin-top:12px">Research degrees</h3>
+          <p style="color:var(--muted)">PhD typically 3–4 years full-time. Research degrees require proposals, supervisors, and often funding applications.</p>
 
-    <article>
-      <h3 class="subheading">Glasgow</h3>
-      <p>Glasgow is famous for its friendly atmosphere, cultural festivals, and vibrant nightlife at relatively lower costs.</p>
-    </article>
+          <h4 style="margin-top:12px">Short courses & professional training</h4>
+          <p style="color:var(--muted)">Short certificates, diplomas, and professional courses are available across many institutions and private providers.</p>
+        </div>
 
-    <article>
-      <h3 class="subheading">Bristol</h3>
-      <p>A creative hub with green spaces and a thriving tech scene, Bristol is becoming increasingly popular with students.</p>
-    </article>
-  </section>
+        <aside class="card">
+          <h3 style="margin-top:0">Entry requirements</h3>
+          <ul>
+            <li>Academic transcripts and predicted grades (UG via UCAS)</li>
+            <li>Proof of English (IELTS, TOEFL, or equivalent) unless exempt</li>
+            <li>Personal statement or statement of purpose</li>
+            <li>References — usually 1–2 academic referees</li>
+            <li>CV and portfolio for creative/art courses</li>
+          </ul>
 
-  <section id="travel-tips">
-    <h2>Travel and Exploration</h2>
-    <p>The UK is well connected with extensive public transport, making weekend trips and exploration easy.</p>
-    <ul>
-      <li>Use trains for fast travel between cities (e.g., London to Edinburgh takes ~4.5 hours)</li>
-      <li>Local buses and metro systems are affordable for daily commuting</li>
-      <li>Student discounts available on many transport services</li>
-      <li>Explore historic castles, museums, and national parks</li>
-    </ul>
-  </section>
+          <h4 style="margin-top:10px">English test tip</h4>
+          <p style="color:var(--muted)">Many universities accept IELTS Academic, TOEFL iBT, PTE Academic, and sometimes Duolingo English Test. Check each program's required scores.</p>
+        </aside>
+      </div>
+    </section>
 
-  <section id="healthcare">
-    <h2>Healthcare and Insurance</h2>
-    <p>International students pay the Immigration Health Surcharge (IHS) as part of their visa application, which gives access to the NHS during their stay.</p>
-    <ul>
-      <li>Register with a local General Practitioner (GP) after arrival</li>
-      <li>Access to emergency and routine medical care</li>
-      <li>Some services like dental and eye care may require extra payment</li>
-      <li>Private health insurance is optional but available</li>
-    </ul>
-  </section>
+    <section id="tuition">
+      <div class="card">
+        <h2 class="section-title">Tuition fees & funding</h2>
+        <p>Tuition varies widely by level, institution, and subject. As an international student, you should plan carefully and check exact fees on each university website.</p>
 
-  <section id="post-study-options">
-    <h2>Post-Study Work Opportunities</h2>
-    <p>The UK offers a Graduate Route visa allowing international students to stay and work, or look for work, for up to 2 years after completing their degree (3 years for PhD graduates).</p>
-    <p>This is a great opportunity to gain international work experience and potentially settle in the UK.</p>
-  </section>
+        <h4 style="margin-top:12px">Ballpark figures</h4>
+        <ul style="color:var(--muted)">
+          <li>Undergraduate (per year): £12,000 — £35,000+</li>
+          <li>Postgraduate taught (per year): £12,000 — £40,000+</li>
+          <li>Professional programs (e.g., MBA): £20,000 — £70,000+</li>
+        </ul>
 
-  <section id="useful-resources">
-    <h2>Useful Resources</h2>
-    <ul>
-      <li><a href="https://www.ucas.com" target="_blank" rel="noopener">UCAS - Undergraduate applications</a></li>
-      <li><a href="https://www.gov.uk/student-visa" target="_blank" rel="noopener">UK Student Visa Guidance</a></li>
-      <li><a href="https://www.chevening.org" target="_blank" rel="noopener">Chevening Scholarships</a></li>
-      <li><a href="https://www.britishcouncil.org" target="_blank" rel="noopener">British Council - Study UK</a></li>
-      <li><a href="https://www.nhs.uk" target="_blank" rel="noopener">NHS - Healthcare in UK</a></li>
-    </ul>
-  </section>
+        <h4 style="margin-top:12px">Scholarships & funding</h4>
+        <p style="color:var(--muted)">Scholarships include university-specific awards, Commonwealth scholarships, Chevening (for eligible countries), departmental studentships, and external trusts. Early applications and strong supporting documents increase chances.</p>
 
-</div>
+        <div id="scholarships" style="margin-top:12px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+          <div style="background:linear-gradient(180deg,rgba(11,94,215,0.02),#fff);padding:12px;border-radius:10px">
+            <strong>Chevening</strong>
+            <p style="color:var(--muted);margin:6px 0 0">Ambitious mid-career professionals from eligible countries — covers tuition, living allowance.</p>
+          </div>
+          <div style="background:linear-gradient(180deg,rgba(11,94,215,0.02),#fff);padding:12px;border-radius:10px">
+            <strong>Commonwealth Scholarships</strong>
+            <p style="color:var(--muted);margin:6px 0 0">For students from Commonwealth countries; often merit-based with generous support.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<footer>
-  <p>© 2025 Study Abroad Guide | Your trusted resource for UK education</p>
-</footer>
+    <section id="apply">
+      <div class="card">
+        <h2 class="section-title">Application process</h2>
+        <p>The application path differs between undergraduate and postgraduate programs.</p>
 
+        <h4 style="margin-top:12px">Undergraduate — UCAS</h4>
+        <p style="color:var(--muted)">Most UK undergraduate applications are submitted through UCAS. You can apply to up to 5 courses, submit personal statement, references, and predicted grades.</p>
+
+        <h4 style="margin-top:12px">Postgraduate</h4>
+        <p style="color:var(--muted)">For master's and PhDs, many applicants apply directly through the university portal. You'll need references, a statement of purpose, transcripts, and proof of funds.</p>
+
+        <h4 style="margin-top:12px">Interviews & auditions</h4>
+        <p style="color:var(--muted)">Some programs (medicine, art, music) require interviews, auditions, or portfolio reviews — prepare early and practice with mentors.</p>
+      </div>
+    </section>
+
+    <section id="visa">
+      <div class="two-col">
+        <div class="card">
+          <h2 class="section-title">Student visa & immigration basics</h2>
+          <p>The UK Student Route visa allows international students to study in the UK for the duration of their course. Requirements include a CAS (Confirmation of Acceptance for Studies), proof of funds, and English competency.</p>
+
+          <h4 style="margin-top:12px">Key steps</h4>
+          <ul>
+            <li>Receive an unconditional or conditional offer with CAS from your university</li>
+            <li>Show required funds to cover tuition and living costs (amount depends on location and course length)</li>
+            <li>Apply for the Student Route visa online and attend a biometrics appointment</li>
+            <li>Purchase health surcharge (IHS) as part of the visa application</li>
+          </ul>
+
+          <h4 style="margin-top:12px">Work while studying</h4>
+          <p style="color:var(--muted)">Full-time students can often work up to 20 hours per week during term (check your visa conditions). Certain courses with placements may permit more work during placement periods.</p>
+        </div>
+
+        <aside class="card">
+          <h3 style="margin-top:0">Proof of funds (example)</h3>
+          <p style="color:var(--muted)">You may need to show funds to cover 9 months of living costs plus tuition. London has a higher living requirement than other parts of the UK.</p>
+
+          <h4 style="margin-top:10px">IHS & NHS</h4>
+          <p style="color:var(--muted)">As part of your visa you usually pay the immigration health surcharge (IHS) which provides access to NHS services while in the UK.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="living">
+      <div class="card">
+        <h2 class="section-title">Living in the UK — costs & accommodation</h2>
+        <p>Cost of living depends heavily on city. London is typically the most expensive; smaller cities and towns can be much cheaper.</p>
+
+        <h4 style="margin-top:12px">Accommodation options</h4>
+        <ul>
+          <li>University halls: convenient for first year, often with meal plans</li>
+          <li>Private flats and shared houses: common for returning students</li>
+          <li>Homestay: live with a local family — useful for shorter programs</li>
+        </ul>
+
+        <h4 style="margin-top:12px">Monthly budget (example)</h4>
+        <ul style="color:var(--muted)">
+          <li>London: £1,200 — £1,800</li>
+          <li>Other cities: £700 — £1,100</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="student-life">
+      <div class="card">
+        <h2 class="section-title">Student life, culture & support</h2>
+        <p>The UK is diverse — you'll meet people from many countries and backgrounds. Universities have student unions, clubs, and societies for sports, arts, and academic interests.</p>
+
+        <h4 style="margin-top:12px">Support services</h4>
+        <ul>
+          <li>International student offices</li>
+          <li>Mental health & counselling</li>
+          <li>Academic support & study skills</li>
+          <li>Career services and placement help</li>
+        </ul>
+
+        <h4 style="margin-top:12px">Travel & leisure</h4>
+        <p style="color:var(--muted)">The UK is compact — train travel makes short trips easy. Enjoy festivals, museums, pubs, theatres, and national parks in your free time.</p>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="two-col">
+        <div class="card">
+          <h2 class="section-title">Working, internships & post-study options</h2>
+          <p>Work experience is valuable. Many students take internships, part-time roles, and placements to build skills and networks.</p>
+
+          <h4 style="margin-top:12px">Post-study Work (Graduate route)</h4>
+          <p style="color:var(--muted)">After successful completion of eligible courses, international students may apply for the Graduate route to stay and work in the UK for 2 years (3 years for doctoral graduates).</p>
+        </div>
+
+        <aside class="card">
+          <h3 style="margin-top:0">Job search tips</h3>
+          <ul style="color:var(--muted)">
+            <li>Use university career portals and job fairs</li>
+            <li>Build a UK-style CV and LinkedIn profile</li>
+            <li>Network with alumni and local companies</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="tips">
+      <div class="card">
+        <h2 class="section-title">Practical tips for applicants</h2>
+        <ul>
+          <li>Start early — top programs are competitive</li>
+          <li>Tailor your personal statement to each course</li>
+          <li>Get strong references; brief your referees on deadlines</li>
+          <li>Prepare proof of funds and documents for visa interviews</li>
+          <li>Consider short courses to test UK study style before committing</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="card faq">
+        <h2 class="section-title">Frequently asked questions</h2>
+
+        <div class="q">How long does a master's degree take?</div>
+        <div class="a">Taught master's are often 1 year full-time; research master's and MRes programs can take longer.</div>
+
+        <div class="q">Can I work while studying?</div>
+        <div class="a">Yes — subject to visa restrictions (commonly up to 20 hours/week during term time).</div>
+
+        <div class="q">Is living more expensive in London?</div>
+        <div class="a">Yes — London living costs are typically higher than most other UK cities.</div>
+
+        <div class="q">Do I need a student visa?</div>
+        <div class="a">Yes, non-UK/EEA students usually need a Student route visa. See university guidance and official immigration pages for exact rules.</div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="card">
+        <h2 class="section-title">Contact & next steps</h2>
+        <p>If you want, we can:</p>
+        <ul>
+          <li>Make a personalized checklist for your chosen course</li>
+          <li>Help write or edit a personal statement</li>
+          <li>Draft a scholarship application or CV</li>
+        </ul>
+
+        <div style="margin-top:12px;display:flex;gap:12px">
+          <button class="btn" onclick="alert('Great — tell me which course/university you want a checklist for!')">Request checklist</button>
+          <button class="btn ghost" onclick="alert('I can help edit your personal statement — paste it here.')">Edit personal statement</button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">© Study in the UK — Guide • Built with care • Updated frequently</div>
+    </footer>
+  </main>
+
+  <script>
+    // Small UX: accordion FAQ toggle
+    document.querySelectorAll('.faq .q').forEach(q => {
+      q.addEventListener('click', () => {
+        q.classList.toggle('active');
+      });
+    });
+
+    // Smooth links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target) target.scrollIntoView({behavior:'smooth'});
+      });
+    });
+  </script>
 </body>
 </html>
+
